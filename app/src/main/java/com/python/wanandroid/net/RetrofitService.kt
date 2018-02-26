@@ -15,4 +15,7 @@ interface RetrofitService {
     @GET("article/list/{page}/json")
     fun getArticleList(@Path("page") page: Int): Observable<ArticleBean>
 
+    @GET("banner/json")
+    fun getBanner(): Observable<String>
+
 }

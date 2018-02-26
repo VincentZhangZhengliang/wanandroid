@@ -18,8 +18,10 @@ object Api {
         return RetrofitManager.getInstance().getArticleList(page)
     }
 
-//    fun getBanner()
-
+    //http://www.wanandroid.com/banner/json
+    fun getBanner(): Observable<String> {
+        return RetrofitManager.getInstance().getBanner()
+    }
 
 
 }
