@@ -1,21 +1,37 @@
 package com.python.wanandroid.ui.home
 
 
-import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-
+import android.widget.Toast
 import com.python.wanandroid.R
+import com.python.wanandroid.base.LazyLoadBaseFragment
+import com.python.wanandroid.ui.home.model.ArticleDataBean
+import com.python.wanandroid.ui.home.view.IHomeView
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : LazyLoadBaseFragment(), IHomeView {
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_home
+    }
+
+    override fun initView() {
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+
+    }
+
+    override fun initListener() {
+    }
+
+    override fun initData() {
+    }
+
+    override fun refreshView(data: ArticleDataBean) {
+
+    }
+
+    override fun toast(msg: String) {
+        Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
     }
 
 }

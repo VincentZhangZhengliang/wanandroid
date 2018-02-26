@@ -1,25 +1,27 @@
 package com.python.wanandroid.ui.mine
 
 
-import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-
 import com.python.wanandroid.R
+import com.python.wanandroid.base.LazyLoadBaseFragment
 
 
 /**
  * A simple [Fragment] subclass.
  */
-class MineFragment : Fragment() {
+class MineFragment : LazyLoadBaseFragment() {
 
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_mine
+    }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun initView() {
+    }
 
-        return inflater.inflate(R.layout.fragment_mine, container, false)
+    override fun initListener() {
+    }
+
+    override fun initData() {
     }
 
 }

@@ -1,12 +1,13 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.python.wanandroid.ui.home.HomeFragment">
 
-    <TextView
+    <com.youth.banner.Banner
+        android:id="@+id/fragment_home_banner"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/home" />
+        android:layout_height="280px" />
 
-</FrameLayout>
+</LinearLayout>

@@ -1,17 +1,18 @@
 package com.python.wanandroid.net
 
+import com.python.wanandroid.ui.home.model.ArticleBean
 import io.reactivex.Observable
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
-import java.util.*
 
 /**
- * Created by Python on 2018/2/25.
+ * Created by Python;
+ * Created on 2018/2/25;
+ * DSC:
  */
 interface RetrofitService {
 
     @GET("article/list/{page}/json")
-    fun getArticleList(@Path("page") page: Int): Observable<List<String>>
+    fun getArticleList(@Path("page") page: Int): Observable<ArticleBean>
 
 }

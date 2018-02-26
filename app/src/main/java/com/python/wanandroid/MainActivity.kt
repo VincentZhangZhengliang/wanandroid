@@ -1,44 +1,61 @@
 package com.python.wanandroid
 
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
-import android.util.Log
+import android.support.v4.view.ViewPager
+import android.widget.Toast
 import com.python.wanandroid.adapter.MainViewPagerAdapter
-import com.python.wanandroid.net.Api
-import com.python.wanandroid.utils.LogUtil
-import io.reactivex.Observer
-import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
+import com.python.wanandroid.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import timber.log.Timber
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    var mExitTime: Long = 0
+
+    override fun getLayoutId(): Int {
+        return R.layout.activity_main
+    }
+
+    override fun initView() {
+        super.initView()
         activity_main_vp.adapter = MainViewPagerAdapter(supportFragmentManager)
+    }
 
-        Api.getArticleList(0).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Observer<List<String>> {
-                    override fun onSubscribe(d: Disposable) {
-                    }
+    override fun initListener() {
+        super.initListener()
 
-                    override fun onError(e: Throwable) {
-                        e.printStackTrace()
-                    }
+        activity_main_vp.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
 
-                    override fun onComplete() {
-                    }
+            override fun onPageScrollStateChanged(state: Int) {
+            }
 
-                    override fun onNext(t: List<String>) {
-                        Timber.e(t.toString())
-                    }
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            }
 
-                })
+            override fun onPageSelected(position: Int) {
+                activity_main_bnv.menu.getItem(position).isChecked = true
+            }
+
+        })
+
+
+    }
+
+    override fun initImmersionBar() {
+        super.initImmersionBar()
+        mImmersionBar
+                .fitsSystemWindows(true)
+                .statusBarColor(R.color.colorPrimary)
+                .init()
+    }
+
+    override fun onBackPressed() {
+        val currentTime = System.currentTimeMillis()
+        if (currentTime - mExitTime < 2 * 1000) {
+            super.onBackPressed()
+            finish()
+        } else {
+            Toast.makeText(this, R.string.exit, Toast.LENGTH_SHORT).show()
+            mExitTime = currentTime
+        }
     }
 
 }
