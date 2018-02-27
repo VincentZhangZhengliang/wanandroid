@@ -1,12 +1,179 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.python.wanandroid.ui.mine.MineFragment">
 
-    <TextView
+    <View
+        android:id="@+id/fragment_mine_v"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/mine" />
+        android:layout_height="0dp"
+        android:background="@color/colorPrimary" />
 
-</FrameLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/fragment_system_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:title="@string/system" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="250px"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="PxUsage">
+
+        <ImageView
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20px"
+            android:text="@string/tip_login" />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20px"
+        android:paddingLeft="16px"
+        android:paddingRight="16px"
+        android:paddingTop="20px"
+        tools:ignore="PxUsage">
+
+        <ImageView
+            android:id="@+id/fragment_mine_iv_collection"
+            android:layout_width="60px"
+            android:layout_height="60px"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_grade_black_24dp"
+            tools:ignore="PxUsage" />
+
+        <TextView
+            android:id="@+id/fragment_mine_tv_collection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10px"
+            android:layout_toEndOf="@+id/fragment_mine_iv_collection"
+            android:layout_toRightOf="@+id/fragment_mine_iv_collection"
+            android:text="@string/collection"
+            android:textColor="@color/primary_text"
+            android:textSize="25px"
+            tools:ignore="PxUsage" />
+
+        <ImageView
+            android:layout_width="50px"
+            android:layout_height="50px"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+            tools:ignore="PxUsage" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/divider" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20px"
+        android:paddingLeft="16px"
+        android:paddingRight="16px"
+        android:paddingTop="20px"
+        tools:ignore="PxUsage">
+
+        <ImageView
+            android:id="@+id/fragment_mine_iv_bookmark"
+            android:layout_width="60px"
+            android:layout_height="60px"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_bookmark_black_24dp"
+            tools:ignore="PxUsage" />
+
+        <TextView
+            android:id="@+id/fragment_mine_tv_bookmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10px"
+            android:layout_toEndOf="@+id/fragment_mine_iv_bookmark"
+            android:layout_toRightOf="@+id/fragment_mine_iv_bookmark"
+            android:text="@string/bookmark"
+            android:textColor="@color/primary_text"
+            android:textSize="25px"
+            tools:ignore="PxUsage" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/divider" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20px"
+        android:paddingLeft="16px"
+        android:paddingRight="16px"
+        android:paddingTop="20px"
+        tools:ignore="PxUsage">
+
+        <ImageView
+            android:id="@+id/fragment_mine_iv_setting"
+            android:layout_width="60px"
+            android:layout_height="60px"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_settings_black_24dp"
+            tools:ignore="PxUsage" />
+
+        <TextView
+            android:id="@+id/fragment_mine_tv_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10px"
+            android:layout_toEndOf="@+id/fragment_mine_iv_setting"
+            android:layout_toRightOf="@+id/fragment_mine_iv_setting"
+            android:text="@string/setting"
+            android:textColor="@color/primary_text"
+            android:textSize="25px" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/divider" />
+
+</LinearLayout>

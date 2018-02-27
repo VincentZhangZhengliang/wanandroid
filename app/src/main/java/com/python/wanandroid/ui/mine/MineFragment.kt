@@ -2,8 +2,10 @@ package com.python.wanandroid.ui.mine
 
 
 import android.support.v4.app.Fragment
+import com.gyf.barlibrary.ImmersionBar
 import com.python.wanandroid.R
 import com.python.wanandroid.base.LazyLoadBaseFragment
+import kotlinx.android.synthetic.main.fragment_mine.*
 
 
 /**
@@ -16,6 +18,12 @@ class MineFragment : LazyLoadBaseFragment() {
     }
 
     override fun initView() {
+        ImmersionBar.with(this).statusBarView(fragment_mine_v).init()
+
+    }
+
+    override fun initImmersionBar() {
+        super.initImmersionBar()
     }
 
     override fun initListener() {

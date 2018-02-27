@@ -28,6 +28,7 @@ abstract class LazyLoadBaseFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         initView()
         initListener()
+        initImmersionBar()
     }
 
     abstract fun getLayoutId(): Int

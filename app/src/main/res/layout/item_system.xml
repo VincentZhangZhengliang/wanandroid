@@ -3,14 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    tools:ignore="PxUsage">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/colorPrimary"
+        android:layout_marginLeft="10px"
+        android:layout_marginRight="10px"
+        app:cardBackgroundColor="@color/colorBarText"
         app:cardCornerRadius="10px"
-        app:cardElevation="10px"
+        app:cardElevation="15px"
         tools:ignore="PxUsage">
 
         <RelativeLayout
@@ -25,7 +28,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_favorite_black_24dp"
+                android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
                 tools:ignore="PxUsage" />
 
             <TextView
@@ -33,8 +36,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:layout_marginRight="20px"
                 android:layout_toLeftOf="@+id/item_system_iv_arrow"
-                android:text="开发环境" />
+                android:text="开发环境"
+                android:textColor="@color/primary_text"
+                android:textSize="40px" />
 
             <TextView
                 android:id="@+id/item_system_tv_children"
@@ -42,8 +48,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@+id/item_system_tv_name"
+                android:layout_marginRight="40px"
                 android:layout_marginTop="20px"
-                android:text="@string/app_name" />
+                android:text="开发环境开发环境开发环境开发环境开发环境开发环境开发环境开发环境开发环境开发环境"
+                android:textColor="@color/secondary_text"
+                android:textSize="30px" />
 
         </RelativeLayout>
 

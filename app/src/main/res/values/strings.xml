@@ -7,5 +7,9 @@
     <string name="exit">再按一次退出</string>
 
     <string name="hello_blank_fragment">ahhaha</string>
+    <string name="collection">我的收藏</string>
+    <string name="bookmark">我的书签</string>
+    <string name="setting">设置</string>
+    <string name="tip_login">点击头像登录</string>
 
 </resources>

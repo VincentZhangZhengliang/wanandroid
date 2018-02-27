@@ -17,6 +17,7 @@ class MainActivity : BaseActivity() {
     override fun initView() {
         super.initView()
         activity_main_vp.adapter = MainViewPagerAdapter(supportFragmentManager)
+        activity_main_vp.offscreenPageLimit = 2
     }
 
     override fun initListener() {
@@ -37,6 +38,26 @@ class MainActivity : BaseActivity() {
                 }
             }
         })
+
+        activity_main_bnv.setOnNavigationItemSelectedListener {
+            var result = true
+            when (it.itemId) {
+                R.id.id_menu_home -> {
+                    activity_main_vp.currentItem = 0
+                    result = true
+                }
+                R.id.id_menu_system -> {
+                    activity_main_vp.currentItem = 1
+                    result = true
+                }
+                R.id.id_menu_mine -> {
+                    activity_main_vp.currentItem = 2
+                    result = true
+                }
+            }
+            result
+        }
+
     }
 
     override fun initImmersionBar() {

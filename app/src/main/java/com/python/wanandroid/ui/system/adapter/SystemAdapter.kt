@@ -8,6 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.python.wanandroid.R
 import com.python.wanandroid.ui.system.model.TreeDataBean
+import com.zhy.autolayout.utils.AutoUtils
 
 /**
  * Created by Vincent;
@@ -24,11 +25,12 @@ class SystemAdapter(var context: Context, var data: List<TreeDataBean>) : BaseAd
             view = LayoutInflater.from(context).inflate(R.layout.item_system, parent, false)
             holder = ViewHolder(view)
             view.tag = holder
+            AutoUtils.autoSize(view)
         } else {
             view = convertView
             holder = view.tag as ViewHolder
         }
-
+        AutoUtils.autoSize(view)
         holder.tvName.text = data[position].name
         holder.tvChildren.apply {
             val sb = StringBuilder()

@@ -17,11 +17,14 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
-        app:title="@string/app_name" />
+        app:title="@string/system" />
 
     <ListView
         android:id="@+id/fragment_system_lv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:dividerHeight="10px"
+        android:scrollbars="none" />
 
 </LinearLayout>
