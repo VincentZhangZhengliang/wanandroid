@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.python.wanandroid">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -29,7 +28,8 @@
             android:name="design_height"
             android:value="1280" />
 
-        <activity android:name=".base.BaseActivity"></activity>
+        <activity android:name=".base.BaseActivity" />
+        <activity android:name=".ui.signin.SignInActivity"></activity>
     </application>
 
 </manifest>

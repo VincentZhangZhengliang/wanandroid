@@ -17,7 +17,6 @@ import com.youth.banner.BannerConfig
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.item_banner.*
 
-
 class HomeFragment : LazyLoadBaseFragment(), IHomeView {
 
     private val presenter = HomePresenter(this)

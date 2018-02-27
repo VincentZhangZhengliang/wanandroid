@@ -27,6 +27,7 @@
         tools:ignore="PxUsage">
 
         <ImageView
+            android:id="@+id/fragment_mine_iv_pic"
             android:layout_width="100px"
             android:layout_height="100px"
             android:src="@mipmap/ic_launcher" />

@@ -5,6 +5,7 @@ import com.python.wanandroid.ui.home.model.BannerBean
 import com.python.wanandroid.ui.system.model.TreeBean
 import io.reactivex.Observable
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 /**
@@ -23,5 +24,7 @@ interface RetrofitService {
     @GET("tree/json")
     fun getTree(): Observable<TreeBean>
 
+    @POST("user/login")
+    fun login(username: String, password: String): Observable<String>
 
 }

@@ -29,5 +29,9 @@ object Api {
         return RetrofitManager.getInstance().getTree()
     }
 
+    fun login(username: String, password: String): Observable<String> {
+        return RetrofitManager.getInstance().login(username, password)
+    }
+
 
 }

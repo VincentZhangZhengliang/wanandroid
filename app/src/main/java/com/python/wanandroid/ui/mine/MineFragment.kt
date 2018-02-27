@@ -1,12 +1,14 @@
 package com.python.wanandroid.ui.mine
 
 
+import android.content.Intent
 import android.graphics.Color
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.gyf.barlibrary.ImmersionBar
 import com.python.wanandroid.R
 import com.python.wanandroid.base.LazyLoadBaseFragment
+import com.python.wanandroid.ui.signin.SignInActivity
 import kotlinx.android.synthetic.main.fragment_mine.*
 
 
@@ -40,6 +42,7 @@ class MineFragment : LazyLoadBaseFragment() {
     }
 
     override fun initListener() {
+        fragment_mine_iv_pic.setOnClickListener { startActivity(Intent(activity, SignInActivity::class.java)) }
     }
 
     override fun initData() {
