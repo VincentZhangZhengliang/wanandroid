@@ -1,6 +1,7 @@
 package com.python.wanandroid.ui.home.biz
 
 import com.python.wanandroid.ui.home.model.ArticleBean
+import com.python.wanandroid.ui.home.model.BannerBean
 import io.reactivex.Observable
 
 /**
@@ -12,5 +13,6 @@ interface IHomeFragmentBiz {
 
     fun getArticleList(page: Int): Observable<ArticleBean>
 
+    fun getBanner(): Observable<BannerBean>
 
 }

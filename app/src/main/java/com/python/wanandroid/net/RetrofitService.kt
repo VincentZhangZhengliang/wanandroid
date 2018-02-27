@@ -1,6 +1,7 @@
 package com.python.wanandroid.net
 
 import com.python.wanandroid.ui.home.model.ArticleBean
+import com.python.wanandroid.ui.home.model.BannerBean
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -16,6 +17,6 @@ interface RetrofitService {
     fun getArticleList(@Path("page") page: Int): Observable<ArticleBean>
 
     @GET("banner/json")
-    fun getBanner(): Observable<String>
+    fun getBanner(): Observable<BannerBean>
 
 }

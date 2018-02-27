@@ -25,4 +25,21 @@ class HomePresenter(var iView: IHomeView) {
 
     }
 
+
+    fun getBanner() {
+
+        biz.getBanner().observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+
+                    if (it.errorCode == 0) {
+                        iView.setBanner(it.data)
+                    } else {
+                        iView.toast(it.errorMsg)
+                    }
+
+                }
+
+
+    }
+
 }

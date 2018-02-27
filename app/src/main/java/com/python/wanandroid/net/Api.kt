@@ -1,6 +1,7 @@
 package com.python.wanandroid.net
 
 import com.python.wanandroid.ui.home.model.ArticleBean
+import com.python.wanandroid.ui.home.model.BannerBean
 import io.reactivex.Observable
 
 /**
@@ -19,7 +20,7 @@ object Api {
     }
 
     //http://www.wanandroid.com/banner/json
-    fun getBanner(): Observable<String> {
+    fun getBanner(): Observable<BannerBean> {
         return RetrofitManager.getInstance().getBanner()
     }
 
