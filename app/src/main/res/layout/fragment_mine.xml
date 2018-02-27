@@ -13,11 +13,10 @@
         android:background="@color/colorPrimary" />
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/fragment_system_toolbar"
+        android:id="@+id/fragment_mine_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        app:title="@string/system" />
+        android:background="@color/colorPrimary" />
 
     <LinearLayout
         android:layout_width="match_parent"

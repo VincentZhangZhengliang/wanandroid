@@ -3,9 +3,8 @@ package com.python.wanandroid.base
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import com.python.wanandroid.R
 
 
 /**
@@ -26,14 +25,20 @@ abstract class LazyLoadBaseFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        initToolbar()
         initView()
         initListener()
         initImmersionBar()
+
     }
 
     abstract fun getLayoutId(): Int
 
     abstract fun initView()
+
+    protected open fun initToolbar() {
+        setHasOptionsMenu(true)
+    }
 
     abstract fun initListener()
 
@@ -61,6 +66,12 @@ abstract class LazyLoadBaseFragment : Fragment() {
             isViewCreated = false
             isUIVisible = false
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        menu?.clear()
+        inflater?.inflate(R.menu.menu, menu)
     }
 
 }

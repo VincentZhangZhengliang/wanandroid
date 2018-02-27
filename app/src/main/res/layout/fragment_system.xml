@@ -16,8 +16,7 @@
         android:id="@+id/fragment_system_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        app:title="@string/system" />
+        android:background="@color/colorPrimary" />
 
     <ListView
         android:id="@+id/fragment_system_lv"

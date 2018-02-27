@@ -1,7 +1,9 @@
 package com.python.wanandroid.ui.system
 
 
+import android.graphics.Color
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.gyf.barlibrary.ImmersionBar
 import com.python.wanandroid.R
@@ -34,7 +36,18 @@ class SystemFragment : LazyLoadBaseFragment(), ISystemView {
     }
 
     override fun initView() {
-        ImmersionBar.with(this).statusBarView(fragment_system_v).init()
+
+    }
+
+    override fun initToolbar() {
+        super.initToolbar()
+        val appCompatActivity = activity as AppCompatActivity
+        appCompatActivity.setSupportActionBar(fragment_system_toolbar)
+        setHasOptionsMenu(true)
+        fragment_system_toolbar.apply {
+            title = getString(R.string.system)
+            setTitleTextColor(Color.WHITE)
+        }
     }
 
     override fun initListener() {
@@ -44,8 +57,9 @@ class SystemFragment : LazyLoadBaseFragment(), ISystemView {
         presenter.getTree()
     }
 
-//    override fun initImmersionBar() {
-//        super.initImmersionBar()
-//    }
+    override fun initImmersionBar() {
+        super.initImmersionBar()
+        ImmersionBar.with(this).statusBarView(fragment_system_v).init()
+    }
 
 }
