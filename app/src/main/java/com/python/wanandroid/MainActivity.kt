@@ -32,17 +32,15 @@ class MainActivity : BaseActivity() {
 
             override fun onPageSelected(position: Int) {
                 activity_main_bnv.menu.getItem(position).isChecked = true
+                when (position) {
+                    0 -> mImmersionBar.statusBarDarkFont(true, 0.5f).navigationBarColor(R.color.colorPrimary).init()
+                }
             }
-
         })
     }
 
     override fun initImmersionBar() {
         super.initImmersionBar()
-        mImmersionBar
-                .fitsSystemWindows(true)
-                .statusBarColor(R.color.colorPrimary)
-                .init()
     }
 
     override fun onBackPressed() {

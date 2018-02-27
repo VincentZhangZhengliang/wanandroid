@@ -1,12 +1,27 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.python.wanandroid.ui.system.SystemFragment">
 
-    <TextView
+    <View
+        android:id="@+id/fragment_system_v"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/system" />
+        android:layout_height="0dp"
+        android:background="@color/colorPrimary" />
 
-</FrameLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/fragment_system_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:title="@string/app_name" />
+
+    <ListView
+        android:id="@+id/fragment_system_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

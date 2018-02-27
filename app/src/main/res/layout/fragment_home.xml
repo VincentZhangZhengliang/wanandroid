@@ -5,9 +5,21 @@
     android:orientation="vertical"
     tools:context="com.python.wanandroid.ui.home.HomeFragment">
 
-    <com.youth.banner.Banner
-        android:id="@+id/fragment_home_banner"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/fragment_home_srl"
         android:layout_width="match_parent"
-        android:layout_height="280px" />
+        android:layout_height="wrap_content">
+
+        <ListView
+            android:id="@+id/fragment_home_lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/icons"
+            android:divider="@null"
+            android:dividerHeight="10px"
+            android:scrollbars="none"
+            tools:ignore="PxUsage" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

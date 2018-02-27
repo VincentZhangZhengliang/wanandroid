@@ -13,4 +13,7 @@
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
 
+    <color name="colorBarText">#F0F5E5</color>
+    <color name="tans">#00000000</color>
+
 </resources>

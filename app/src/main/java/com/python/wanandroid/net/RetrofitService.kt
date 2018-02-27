@@ -2,6 +2,7 @@ package com.python.wanandroid.net
 
 import com.python.wanandroid.ui.home.model.ArticleBean
 import com.python.wanandroid.ui.home.model.BannerBean
+import com.python.wanandroid.ui.system.model.TreeBean
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -18,5 +19,9 @@ interface RetrofitService {
 
     @GET("banner/json")
     fun getBanner(): Observable<BannerBean>
+
+    @GET("tree/json")
+    fun getTree(): Observable<TreeBean>
+
 
 }

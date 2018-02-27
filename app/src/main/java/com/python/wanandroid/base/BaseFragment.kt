@@ -38,6 +38,10 @@ abstract class LazyLoadBaseFragment : Fragment() {
 
     abstract fun initData()
 
+    protected open fun initImmersionBar() {
+
+    }
+
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
         isUIVisible = isVisibleToUser

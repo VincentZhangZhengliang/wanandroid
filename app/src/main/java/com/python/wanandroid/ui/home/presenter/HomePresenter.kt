@@ -1,6 +1,7 @@
 package com.python.wanandroid.ui.home.presenter
 
 import com.python.wanandroid.ui.home.biz.HomeFragmentBiz
+import com.python.wanandroid.ui.home.model.RefreshType
 import com.python.wanandroid.ui.home.view.IHomeView
 import io.reactivex.android.schedulers.AndroidSchedulers
 
@@ -13,33 +14,25 @@ class HomePresenter(var iView: IHomeView) {
 
     val biz = HomeFragmentBiz()
 
-    fun getArticleList(page: Int) {
-
+    fun getArticleList(page: Int, type: RefreshType) {
         biz.getArticleList(page).observeOn(AndroidSchedulers.mainThread()).subscribe {
             if (it.errorCode == 0) {
-                iView.refreshView(it.data)
+                iView.refreshView(it.data,type)
             } else {
                 iView.toast(it.errorMsg)
             }
         }
-
     }
 
-
     fun getBanner() {
-
         biz.getBanner().observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-
                     if (it.errorCode == 0) {
                         iView.setBanner(it.data)
                     } else {
                         iView.toast(it.errorMsg)
                     }
-
                 }
-
-
     }
 
 }
