@@ -13,5 +13,12 @@
     <string name="tip_login">点击头像登录</string>
     <string name="hot">hot</string>
     <string name="search">search</string>
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="confirm">confirm</string>
+    <string name="signin">sign in</string>
+    <string name="signup">sign up</string>
+    <string name="forgetpsw">forget password?</string>
+    <string name="toSignup">----- Don\'t have an account ? -----</string>
 
 </resources>

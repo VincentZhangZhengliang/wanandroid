@@ -29,7 +29,9 @@
             android:value="1280" />
 
         <activity android:name=".base.BaseActivity" />
-        <activity android:name=".ui.signin.SignInActivity"></activity>
+        <activity android:name=".ui.signin.SignInActivity" />
+        <activity android:name=".ui.signup.SignUpActivity" />
+        <activity android:name=".ui.webview.WebviewActivity"></activity>
     </application>
 
 </manifest>

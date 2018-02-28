@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/icons"
     android:orientation="vertical"
     tools:context="com.python.wanandroid.ui.signin.SignInActivity">
 
@@ -12,11 +14,11 @@
         android:layout_height="0dp"
         android:background="@color/colorPrimary" />
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="330px"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorPrimary"
+        tools:ignore="PxUsage">
 
         <ImageView
             android:layout_width="150px"
@@ -27,17 +29,129 @@
 
     </RelativeLayout>
 
-
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/activity_sign_in_til_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="用户名">
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:layout_marginTop="80px"
+        android:hint="@string/username"
+        android:theme="@style/TextInputEditTextTheme"
+        tools:ignore="PxUsage">
 
         <android.support.design.widget.TextInputEditText
+            android:inputType="text"
+            android:id="@+id/activity_sign_in_tiet_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:textSize="40px" />
 
     </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/activity_sign_in_til_psw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:hint="@string/password"
+        android:theme="@style/TextInputEditTextTheme"
+        app:errorEnabled="true"
+        app:passwordToggleDrawable="@drawable/selector_visibility"
+        app:passwordToggleTint="@color/colorPrimary"
+        app:passwordToggleEnabled="true"
+        tools:ignore="PxUsage">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/activity_sign_in_tiet_psw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:inputType="textPassword"
+            android:textSize="40px" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/activity_sign_in_btn_signin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80px"
+        android:layout_marginRight="80px"
+        android:layout_marginTop="40px"
+        android:background="@drawable/shape_login"
+        android:text="@string/signin"
+        android:textAllCaps="false"
+        android:textColor="@color/icons"
+        android:textSize="30px"
+        tools:ignore="PxUsage" />
+
+    <TextView
+        android:id="@+id/activity_sign_in_tv_forget_psw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="80px"
+        android:layout_marginRight="80px"
+        android:layout_marginTop="20px"
+        android:text="@string/forgetpsw"
+        android:textColor="@color/secondary_text"
+        android:textSize="25px"
+        tools:ignore="PxUsage" />
+
+    <RelativeLayout
+        android:id="@+id/activity_sign_in_tv_rl_sign_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180px"
+        android:gravity="center"
+        tools:ignore="PxUsage">
+
+        <ImageView
+            android:id="@+id/activity_sign_in_iv_qq"
+            android:layout_width="80px"
+            android:layout_height="80px"
+            android:src="@drawable/ic_qq"
+            tools:ignore="PxUsage" />
+
+        <ImageView
+            android:id="@+id/activity_sign_in_iv_weixin"
+            android:layout_width="80px"
+            android:layout_height="80px"
+            android:layout_marginLeft="50px"
+            android:layout_marginStart="50px"
+            android:layout_toEndOf="@+id/activity_sign_in_iv_qq"
+            android:layout_toRightOf="@+id/activity_sign_in_iv_qq"
+            android:src="@drawable/ic_weixin"
+            tools:ignore="PxUsage" />
+
+        <ImageView
+            android:id="@+id/activity_sign_in_iv_weibo"
+            android:layout_width="80px"
+            android:layout_height="80px"
+            android:layout_marginLeft="50px"
+            android:layout_marginStart="50px"
+            android:layout_toEndOf="@+id/activity_sign_in_iv_weixin"
+            android:layout_toRightOf="@+id/activity_sign_in_iv_weixin"
+            android:src="@drawable/ic_weibo"
+            tools:ignore="PxUsage" />
+
+        <TextView
+            android:id="@+id/activity_sign_in_tv_sign_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/activity_sign_in_iv_qq"
+            android:layout_marginTop="20px"
+            android:text="@string/toSignup"
+            android:textColor="@color/secondary_text"
+            android:textSize="25px"
+            tools:ignore="PxUsage" />
+
+    </RelativeLayout>
 
 
 </LinearLayout>

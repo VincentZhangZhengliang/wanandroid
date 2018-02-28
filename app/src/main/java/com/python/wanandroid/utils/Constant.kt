@@ -6,4 +6,12 @@ package com.python.wanandroid.utils
 object Constant {
 
     const val SHARED_NAME = "_preferences"
+
+    const val LOGIN = "isLogin"
+
+    const val USERNAME = "username"
+
+    const val PASSWORD = "password"
+
+
 }

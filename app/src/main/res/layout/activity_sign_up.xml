@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.python.wanandroid.ui.signup.SignUpActivity">
+
+    <View
+        android:id="@+id/activity_sign_up_v"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimary" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="330px"
+        android:background="@color/colorPrimary"
+        tools:ignore="PxUsage">
+
+        <ImageView
+            android:layout_width="150px"
+            android:layout_height="150px"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_home_black_24dp"
+            tools:ignore="PxUsage" />
+
+    </RelativeLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/activity_sign_up_til_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20px"
+        android:layout_marginRight="20px"
+        android:layout_marginTop="80px"
+        android:hint="@string/username"
+        android:theme="@style/TextInputEditTextTheme"
+        tools:ignore="PxUsage">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/activity_sign_up_tiet_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:textSize="40px" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/activity_sign_up_til_psw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20px"
+        android:layout_marginRight="20px"
+        android:layout_marginTop="20px"
+        android:hint="@string/password"
+        android:theme="@style/TextInputEditTextTheme"
+        app:passwordToggleEnabled="true"
+        tools:ignore="PxUsage">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/activity_sign_up_tiet_psw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:inputType="textPassword"
+            android:textSize="40px" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/activity_sign_up_til_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20px"
+        android:layout_marginRight="20px"
+        android:layout_marginTop="20px"
+        android:hint="@string/confirm"
+        android:theme="@style/TextInputEditTextTheme"
+        app:passwordToggleEnabled="true"
+        tools:ignore="PxUsage">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/activity_sign_up_tiet_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:inputType="textPassword"
+            android:textSize="40px" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/activity_sign_up_btn_signin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80px"
+        android:layout_marginRight="80px"
+        android:layout_marginTop="40px"
+        android:background="@drawable/shape_login"
+        android:text="@string/signin"
+        android:textAllCaps="false"
+        android:textColor="@color/icons"
+        android:textSize="30px"
+        tools:ignore="PxUsage" />
+
+</LinearLayout>

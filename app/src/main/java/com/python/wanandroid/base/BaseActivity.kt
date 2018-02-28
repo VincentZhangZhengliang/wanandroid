@@ -11,10 +11,10 @@ abstract class BaseActivity : AutoLayoutActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
+        initData()
         initView()
         initImmersionBar()
         initListener()
-        initData()
     }
 
     abstract fun getLayoutId(): Int

@@ -1,6 +1,7 @@
 package com.python.wanandroid.ui.home
 
 
+import android.content.Intent
 import android.widget.Toast
 import com.python.wanandroid.R
 import com.python.wanandroid.base.BaseApplication
@@ -12,7 +13,10 @@ import com.python.wanandroid.ui.home.model.BannerListBean
 import com.python.wanandroid.ui.home.model.RefreshType
 import com.python.wanandroid.ui.home.presenter.HomePresenter
 import com.python.wanandroid.ui.home.view.IHomeView
+import com.python.wanandroid.ui.webview.WebviewActivity
+import com.python.wanandroid.utils.Constant
 import com.python.wanandroid.utils.GlideImageLoader
+import com.python.wanandroid.utils.Preference
 import com.youth.banner.BannerConfig
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.item_banner.*
@@ -25,6 +29,7 @@ class HomeFragment : LazyLoadBaseFragment(), IHomeView {
     private var curPage = 0                     //分页参数
     private val articleList = ArrayList<ArticleDatasBean>()
     private var adapter: HomeLvAdapter = HomeLvAdapter(BaseApplication.instance(), articleList)
+    var login: Boolean by Preference(Constant.LOGIN, false)
 
     override fun setBanner(data: List<BannerListBean>) {
         images.clear()
@@ -37,6 +42,12 @@ class HomeFragment : LazyLoadBaseFragment(), IHomeView {
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE)
         banner.setImages(images)
         banner.setBannerTitles(titles)
+        banner.setOnBannerListener { position: Int ->
+            val intent = Intent(activity, WebviewActivity::class.java)
+            intent.putExtra("title", data[position].title)
+            intent.putExtra("url", data[position].url)
+            startActivity(intent)
+        }
         banner.start()
     }
 
@@ -51,6 +62,7 @@ class HomeFragment : LazyLoadBaseFragment(), IHomeView {
     }
 
     override fun initListener() {
+
 
     }
 
