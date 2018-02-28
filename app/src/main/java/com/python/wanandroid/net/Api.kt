@@ -74,11 +74,11 @@ object Api {
         return RetrofitManager.getInstance().collectAdd("", "", "")
     }
 
-    fun uncollect(id: Long): Observable<String> {
+    fun uncollect(id: Long): Observable<CollectBean> {
         return RetrofitManager.getInstance().uncollect(0)
     }
 
-    fun uncollect2(id: Long): Observable<String> {
+    fun uncollect2(id: Long): Observable<CollectBean> {
         return RetrofitManager.getInstance().uncollect2(id)
     }
 

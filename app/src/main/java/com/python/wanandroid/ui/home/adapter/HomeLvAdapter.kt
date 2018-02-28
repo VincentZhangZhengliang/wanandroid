@@ -62,14 +62,14 @@ class HomeLvAdapter(var context: Context, var data: List<ArticleDatasBean>) : Ba
                 Api.uncollect2(data[position].id).subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe {
-                            Toast.makeText(context, "取消收藏成功", Toast.LENGTH_SHORT).show()
-//                            if (it.errorCode == 0) {
-//                                holder.cbCollect.isChecked = true
-//                                Toast.makeText(context, "收藏成功", Toast.LENGTH_SHORT).show()
-//                            } else {
-//                                holder.cbCollect.isChecked = false
-//                                Toast.makeText(context, it.errorMsg, Toast.LENGTH_SHORT).show()
-//                            }
+//                            Toast.makeText(context, "取消收藏成功", Toast.LENGTH_SHORT).show()
+                            if (it.errorCode == 0) {
+                                holder.cbCollect.isChecked = true
+                                Toast.makeText(context, "取消收藏成功", Toast.LENGTH_SHORT).show()
+                            } else {
+                                holder.cbCollect.isChecked = false
+                                Toast.makeText(context, it.errorMsg, Toast.LENGTH_SHORT).show()
+                            }
 
                         }
 
