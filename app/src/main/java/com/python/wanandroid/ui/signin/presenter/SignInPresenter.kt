@@ -19,7 +19,7 @@ class SignInPresenter(var iView: ISignInView) {
     var isLogin: Boolean by Preference(Constant.LOGIN, false)
     var name: String by Preference(Constant.USERNAME, "")
     var psw: String by Preference(Constant.PASSWORD, "")
-
+    var spDomain: String by Preference(Constant.DOMAIN, "")
 
     val biz = SignInBiz()
 
@@ -37,6 +37,13 @@ class SignInPresenter(var iView: ISignInView) {
                         iView.toast(it.errorMsg)
                     }
                 }
+    }
+
+    fun signout() {
+        isLogin = false
+        name = ""
+        psw = ""
+        spDomain = ""
     }
 
 }

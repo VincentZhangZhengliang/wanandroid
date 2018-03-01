@@ -5,7 +5,10 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.BaseAdapter
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import com.python.wanandroid.R
 import com.python.wanandroid.net.Api
 import com.python.wanandroid.ui.home.model.ArticleDatasBean
@@ -15,7 +18,6 @@ import com.python.wanandroid.utils.Preference
 import com.zhy.autolayout.utils.AutoUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
 
 /**
  * Created by Vincent;
@@ -23,6 +25,7 @@ import timber.log.Timber
  * DSC:
  */
 class HomeLvAdapter(var context: Context, var data: List<ArticleDatasBean>) : BaseAdapter() {
+
 
     var login: Boolean by Preference(Constant.LOGIN, false)
 
@@ -42,37 +45,35 @@ class HomeLvAdapter(var context: Context, var data: List<ArticleDatasBean>) : Ba
         holder.tvAuthor.text = data[position].author
         holder.tvNiceDate.text = data[position].niceDate
         holder.tvContent.text = data[position].title
-        holder.cbCollect.isChecked = data[position].collect
-        holder.cbCollect.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
-                Timber.e(data[position].id.toString())
+        if (data[position].collect)
+            holder.cbCollect.setBackgroundResource(R.drawable.ic_favorite_24dp)
+        else
+            holder.cbCollect.setBackgroundResource(R.drawable.ic_favorite_black_24dp)
+
+        holder.cbCollect.setOnClickListener {
+            if (data[position].collect) {
+                //TODO : 取消收藏
+                Api.uncollect2(data[position].id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                        .subscribe {
+                            if (it.errorCode == 0) {
+                                holder.cbCollect.setBackgroundResource(R.drawable.ic_favorite_black_24dp)
+                                data[position].collect = false
+                                Toast.makeText(context, "取消收藏成功", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+
+            } else {
                 Api.collect(data[position].id).subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe {
                             if (it.errorCode == 0) {
-                                holder.cbCollect.isChecked = true
+                                holder.cbCollect.setBackgroundResource(R.drawable.ic_favorite_24dp)
+                                data[position].collect = true
                                 Toast.makeText(context, "收藏成功", Toast.LENGTH_SHORT).show()
                             } else {
-                                holder.cbCollect.isChecked = false
                                 Toast.makeText(context, it.errorMsg, Toast.LENGTH_SHORT).show()
                             }
                         }
-            } else {
-                //TODO : 取消收藏
-                Api.uncollect2(data[position].id).subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe {
-//                            Toast.makeText(context, "取消收藏成功", Toast.LENGTH_SHORT).show()
-                            if (it.errorCode == 0) {
-                                holder.cbCollect.isChecked = true
-                                Toast.makeText(context, "取消收藏成功", Toast.LENGTH_SHORT).show()
-                            } else {
-                                holder.cbCollect.isChecked = false
-                                Toast.makeText(context, it.errorMsg, Toast.LENGTH_SHORT).show()
-                            }
-
-                        }
-
             }
         }
 
@@ -83,9 +84,9 @@ class HomeLvAdapter(var context: Context, var data: List<ArticleDatasBean>) : Ba
             context.startActivity(intent)
         }
 
-
         return view
     }
+
 
     override fun getItem(position: Int): Any {
         return data[position]
@@ -104,7 +105,7 @@ class HomeLvAdapter(var context: Context, var data: List<ArticleDatasBean>) : Ba
         val tvAuthor = view.findViewById<TextView>(R.id.item_home_tv_author)
         val tvNiceDate = view.findViewById<TextView>(R.id.item_home_tv_niceDate)
         val tvContent = view.findViewById<TextView>(R.id.item_home_tv_content)
-        val cbCollect = view.findViewById<CheckBox>(R.id.item_home_cb_collect)
+        val cbCollect = view.findViewById<ImageView>(R.id.item_home_cb_collect)
     }
 
 }

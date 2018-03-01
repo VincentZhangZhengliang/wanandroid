@@ -1,7 +1,6 @@
 package com.python.wanandroid.net
 
-import android.util.Log
-import com.python.wanandroid.utils.LogUtil
+import com.python.wanandroid.utils.Constant
 import com.python.wanandroid.utils.Preference
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -24,6 +23,8 @@ object OkHttpManager {
     private const val CONNECT_TIMEOUT = 30L
     private const val READ_TIMEOUT = 10L
 
+    var login: Boolean by Preference(Constant.LOGIN, false)
+
     fun getClient(): OkHttpClient {
         return OkHttpClient.Builder().connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
@@ -34,9 +35,12 @@ object OkHttpManager {
                     val requestUrl = request.url().toString()
                     val domain = request.url().host()
                     // set-cookie maybe has multi, login to save cookie
+                    val cookies = response.headers(SET_COOKIE_KEY)
+                    val cookie = encodeCookie(cookies)
+                    val spDomain: String by Preference(domain, "")
+                    login = cookie == spDomain
+                    //登录或者注册成功后记录Cookies
                     if ((requestUrl.contains(SAVE_USER_LOGIN_KEY) || requestUrl.contains(SAVE_USER_REGISTER_KEY)) && !response.headers(SET_COOKIE_KEY).isEmpty()) {
-                        val cookies = response.headers(SET_COOKIE_KEY)
-                        val cookie = encodeCookie(cookies)
                         saveCookie(requestUrl, domain, cookie)
                     }
                     response
@@ -71,6 +75,7 @@ object OkHttpManager {
         domain ?: return
         var spDomain: String by Preference(domain, cookies)
         spDomain = cookies
+
     }
 
     private fun encodeCookie(cookies: MutableList<String>): String {

@@ -13,5 +13,6 @@ object Constant {
 
     const val PASSWORD = "password"
 
+    const val DOMAIN = "wanandroid.com"
 
 }

@@ -38,24 +38,24 @@
                 android:layout_alignBaseline="@+id/item_home_iv_pic"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20px"
+                android:layout_marginStart="20px"
                 android:layout_toEndOf="@+id/item_home_iv_pic"
                 android:layout_toRightOf="@+id/item_home_iv_pic"
                 android:gravity="center"
                 android:text="鸿洋"
                 android:textColor="@color/primary_text"
-                android:textSize="40px"
-                android:layout_marginStart="20px" />
+                android:textSize="40px" />
 
             <TextView
                 android:id="@+id/item_home_tv_niceDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:text="10小时前"
                 android:textColor="@color/primary_text"
-                android:textSize="40px"
-                android:layout_alignParentEnd="true" />
+                android:textSize="40px" />
 
         </RelativeLayout>
 
@@ -81,14 +81,13 @@
                 android:textColor="@color/primary"
                 android:textSize="30px" />
 
-            <CheckBox
+            <ImageView
                 android:id="@+id/item_home_cb_collect"
                 android:layout_width="60px"
                 android:layout_height="60px"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/selector_cb_collect"
-                android:button="@null"
-                android:checked="false" />
+                android:button="@null" />
 
         </RelativeLayout>
 

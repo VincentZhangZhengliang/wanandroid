@@ -5,8 +5,6 @@ import com.python.wanandroid.R
 import com.python.wanandroid.base.BaseActivity
 import com.python.wanandroid.ui.signin.presenter.SignInPresenter
 import com.python.wanandroid.ui.signin.view.ISignInView
-import com.python.wanandroid.utils.Constant
-import com.python.wanandroid.utils.Preference
 import kotlinx.android.synthetic.main.activity_sign_in.*
 
 /**
@@ -19,8 +17,6 @@ class SignInActivity : BaseActivity(), ISignInView {
     }
 
     val presenter = SignInPresenter(this)
-
-
 
     override fun getLayoutId(): Int {
         return R.layout.activity_sign_in
@@ -36,8 +32,11 @@ class SignInActivity : BaseActivity(), ISignInView {
 
     }
 
+
     override fun initView() {
         super.initView()
+
+
     }
 
     override fun initListener() {
@@ -45,6 +44,14 @@ class SignInActivity : BaseActivity(), ISignInView {
         activity_sign_in_btn_signin.setOnClickListener {
             signin()
         }
+
+        activity_sign_in_iv_qq.setOnClickListener {
+            signout()
+        }
+    }
+
+    private fun signout() {
+        presenter.signout()
     }
 
     private fun signin() {

@@ -95,6 +95,7 @@ class WebviewActivity : BaseActivity() {
         override fun onProgressChanged(view: WebView, newProgress: Int) {
             if (newProgress > 90) {
 //                toolbar_title.text = title
+
             }
         }
 

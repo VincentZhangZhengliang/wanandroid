@@ -10,7 +10,4 @@ interface ISignInView {
     fun toast(msg: String)
 
 
-
-
-
 }
