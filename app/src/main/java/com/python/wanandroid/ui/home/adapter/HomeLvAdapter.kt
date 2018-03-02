@@ -12,6 +12,7 @@ import android.widget.Toast
 import com.python.wanandroid.R
 import com.python.wanandroid.net.Api
 import com.python.wanandroid.ui.home.model.ArticleDatasBean
+import com.python.wanandroid.ui.signin.SignInActivity
 import com.python.wanandroid.ui.webview.WebviewActivity
 import com.python.wanandroid.utils.Constant
 import com.python.wanandroid.utils.Preference
@@ -51,29 +52,33 @@ class HomeLvAdapter(var context: Context, var data: List<ArticleDatasBean>) : Ba
             holder.cbCollect.setBackgroundResource(R.drawable.ic_favorite_black_24dp)
 
         holder.cbCollect.setOnClickListener {
-            if (data[position].collect) {
-                //TODO : 取消收藏
-                Api.uncollect2(data[position].id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                        .subscribe {
-                            if (it.errorCode == 0) {
-                                holder.cbCollect.setBackgroundResource(R.drawable.ic_favorite_black_24dp)
-                                data[position].collect = false
-                                Toast.makeText(context, "取消收藏成功", Toast.LENGTH_SHORT).show()
+            if (login) {
+                if (data[position].collect) {
+                    //TODO : 取消收藏
+                    Api.uncollect2(data[position].id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                            .subscribe {
+                                if (it.errorCode == 0) {
+                                    holder.cbCollect.setBackgroundResource(R.drawable.ic_favorite_black_24dp)
+                                    data[position].collect = false
+                                    Toast.makeText(context, "取消收藏成功", Toast.LENGTH_SHORT).show()
+                                }
                             }
-                        }
 
-            } else {
-                Api.collect(data[position].id).subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe {
-                            if (it.errorCode == 0) {
-                                holder.cbCollect.setBackgroundResource(R.drawable.ic_favorite_24dp)
-                                data[position].collect = true
-                                Toast.makeText(context, "收藏成功", Toast.LENGTH_SHORT).show()
-                            } else {
-                                Toast.makeText(context, it.errorMsg, Toast.LENGTH_SHORT).show()
+                } else {
+                    Api.collect(data[position].id).subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe {
+                                if (it.errorCode == 0) {
+                                    holder.cbCollect.setBackgroundResource(R.drawable.ic_favorite_24dp)
+                                    data[position].collect = true
+                                    Toast.makeText(context, "收藏成功", Toast.LENGTH_SHORT).show()
+                                } else {
+                                    Toast.makeText(context, it.errorMsg, Toast.LENGTH_SHORT).show()
+                                }
                             }
-                        }
+                }
+            } else {
+                context.startActivity(Intent(context, SignInActivity::class.java))
             }
         }
 

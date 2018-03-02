@@ -31,7 +31,8 @@
         <activity android:name=".base.BaseActivity" />
         <activity android:name=".ui.signin.SignInActivity" />
         <activity android:name=".ui.signup.SignUpActivity" />
-        <activity android:name=".ui.webview.WebviewActivity"></activity>
+        <activity android:name=".ui.webview.WebviewActivity" />
+        <activity android:name=".ui.setting.SettingActivity"></activity>
     </application>
 
 </manifest>
