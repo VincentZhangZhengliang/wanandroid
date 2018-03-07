@@ -32,7 +32,8 @@
         <activity android:name=".ui.signin.SignInActivity" />
         <activity android:name=".ui.signup.SignUpActivity" />
         <activity android:name=".ui.webview.WebviewActivity" />
-        <activity android:name=".ui.setting.SettingActivity"></activity>
+        <activity android:name=".ui.setting.SettingActivity" />
+        <activity android:name=".ui.collect.MyCollectionActivity"></activity>
     </application>
 
 </manifest>

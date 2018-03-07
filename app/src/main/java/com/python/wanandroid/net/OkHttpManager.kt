@@ -37,8 +37,8 @@ object OkHttpManager {
                     // set-cookie maybe has multi, login to save cookie
                     val cookies = response.headers(SET_COOKIE_KEY)
                     val cookie = encodeCookie(cookies)
-                    val spDomain: String by Preference(domain, "")
-                    login = cookie == spDomain
+//                    val spDomain: String by Preference(domain, "")
+//                    login = cookie == spDomain
                     //登录或者注册成功后记录Cookies
                     if ((requestUrl.contains(SAVE_USER_LOGIN_KEY) || requestUrl.contains(SAVE_USER_REGISTER_KEY)) && !response.headers(SET_COOKIE_KEY).isEmpty()) {
                         saveCookie(requestUrl, domain, cookie)

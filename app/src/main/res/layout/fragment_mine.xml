@@ -41,6 +41,7 @@
 
 
     <RelativeLayout
+        android:id="@+id/fragment_mine_rl_my_collection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="20px"
@@ -87,6 +88,7 @@
         android:background="@color/divider" />
 
     <RelativeLayout
+        android:id="@+id/fragment_mine_rl_my_bookmark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="20px"
@@ -132,6 +134,7 @@
         android:background="@color/divider" />
 
     <RelativeLayout
+        android:id="@+id/fragment_mine_rl_setting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="20px"

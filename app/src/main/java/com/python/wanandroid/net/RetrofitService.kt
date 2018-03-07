@@ -1,5 +1,6 @@
 package com.python.wanandroid.net
 
+import com.python.wanandroid.ui.collect.model.CollectionBean
 import com.python.wanandroid.ui.home.model.ArticleBean
 import com.python.wanandroid.ui.home.model.BannerBean
 import com.python.wanandroid.ui.home.model.CollectBean
@@ -90,7 +91,7 @@ interface RetrofitService {
      * lg/collect/list/0/json  0  页码
      */
     @GET("lg/collect/list/{page}/json")
-    fun collectList(@Path("page") page: Int): Observable<String>
+    fun collectList(@Path("page") page: Int): Observable<CollectionBean>
 
     /**
      * 收藏站内文章

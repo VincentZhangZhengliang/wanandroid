@@ -1,5 +1,6 @@
 package com.python.wanandroid.net
 
+import com.python.wanandroid.ui.collect.model.CollectionBean
 import com.python.wanandroid.ui.home.model.ArticleBean
 import com.python.wanandroid.ui.home.model.BannerBean
 import com.python.wanandroid.ui.home.model.CollectBean
@@ -62,7 +63,7 @@ object Api {
         return RetrofitManager.getInstance().register(username, password, "")
     }
 
-    fun collectList(username: String, password: String): Observable<String> {
+    fun collectList(username: String, password: String): Observable<CollectionBean> {
         return RetrofitManager.getInstance().collectList(0)
     }
 

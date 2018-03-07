@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">WanAndroid</string>
+    <string name="app_name">简学</string>
     <string name="home">首页</string>
     <string name="system">知识体系</string>
     <string name="mine">我的</string>
@@ -20,5 +20,12 @@
     <string name="signup">sign up</string>
     <string name="forgetpsw">forget password?</string>
     <string name="toSignup">----- Don\'t have an account ? -----</string>
+
+    <string name="my_collection">我的收藏</string>
+    <string name="about_jianxue">关于简学</string>
+    <string name="check_update">检查更新</string>
+    <string name="wifi">开启后WIFI自动下载更新应用</string>
+    <string name="auto_update">自动更新</string>
+    <string name="ssystem_setting">系统设置</string>
 
 </resources>

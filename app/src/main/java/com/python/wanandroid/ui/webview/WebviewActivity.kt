@@ -33,6 +33,7 @@ class WebviewActivity : BaseActivity() {
         settings.blockNetworkImage = false
         settings.pluginState = WebSettings.PluginState.ON
         settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+        settings.cacheMode = WebSettings.LOAD_NO_CACHE
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
         }
@@ -56,6 +57,22 @@ class WebviewActivity : BaseActivity() {
     override fun initImmersionBar() {
         super.initImmersionBar()
         mImmersionBar.statusBarView(activity_webview_v).init()
+    }
+
+
+    override fun initListener() {
+        super.initListener()
+
+        activity_webview_toolbar.setNavigationOnClickListener { finish() }
+
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        activity_webview_wv.clearCache(true)
+        activity_webview_wv.removeAllViews()
+        activity_webview_wv.destroy()
     }
 
     private inner class MyWebViewClient : WebViewClient() {
@@ -94,8 +111,7 @@ class WebviewActivity : BaseActivity() {
 
         override fun onProgressChanged(view: WebView, newProgress: Int) {
             if (newProgress > 90) {
-//                toolbar_title.text = title
-
+                activity_webview_toolbar.title = title
             }
         }
 

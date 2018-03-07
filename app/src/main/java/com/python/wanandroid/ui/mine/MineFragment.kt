@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity
 import com.gyf.barlibrary.ImmersionBar
 import com.python.wanandroid.R
 import com.python.wanandroid.base.LazyLoadBaseFragment
+import com.python.wanandroid.ui.collect.MyCollectionActivity
+import com.python.wanandroid.ui.setting.SettingActivity
 import com.python.wanandroid.ui.signin.SignInActivity
 import kotlinx.android.synthetic.main.fragment_mine.*
 
@@ -43,6 +45,8 @@ class MineFragment : LazyLoadBaseFragment() {
 
     override fun initListener() {
         fragment_mine_iv_pic.setOnClickListener { startActivity(Intent(activity, SignInActivity::class.java)) }
+        fragment_mine_rl_setting.setOnClickListener { startActivity(Intent(activity, SettingActivity::class.java)) }
+        fragment_mine_rl_my_collection.setOnClickListener { startActivity(Intent(activity, MyCollectionActivity::class.java)) }
     }
 
     override fun initData() {
