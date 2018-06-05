@@ -15,7 +15,7 @@ interface ISignupView {
 
     fun signUpSuccess()
 
-    fun signUpFail()
+    fun signUpFail(msg:String)
 
     fun signInFail()
 

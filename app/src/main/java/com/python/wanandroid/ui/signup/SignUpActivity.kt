@@ -1,7 +1,6 @@
 package com.python.wanandroid.ui.signup
 
 import android.text.TextUtils
-import android.view.TextureView
 import android.widget.Toast
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.python.wanandroid.R
@@ -10,9 +9,7 @@ import com.python.wanandroid.ui.signup.event.RegisterEvent
 import com.python.wanandroid.ui.signup.presenter.SignupPresenter
 import com.python.wanandroid.ui.signup.view.ISignupView
 import io.reactivex.Observable
-import io.reactivex.functions.Consumer
 import io.reactivex.functions.Function3
-import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.greenrobot.eventbus.EventBus
 
@@ -62,8 +59,8 @@ class SignUpActivity : BaseActivity(), ISignupView {
     /**
      * 注册失败
      */
-    override fun signUpFail() {
-        toast("注册失败")
+    override fun signUpFail(msg : String) {
+        toast(msg)
     }
 
     /**

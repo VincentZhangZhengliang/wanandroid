@@ -2,7 +2,6 @@ package com.python.wanandroid.ui.signup.presenter
 
 import com.python.wanandroid.ui.signin.model.SignInBean
 import com.python.wanandroid.ui.signup.biz.SignupBiz
-import com.python.wanandroid.ui.signup.event.RegisterEvent
 import com.python.wanandroid.ui.signup.view.ISignupView
 import com.python.wanandroid.utils.Constant
 import com.python.wanandroid.utils.Preference
@@ -11,8 +10,6 @@ import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import org.greenrobot.eventbus.EventBus
-import timber.log.Timber
 
 /**
  * @author Python
@@ -21,48 +18,49 @@ import timber.log.Timber
  */
 class SignupPresenter(var iView : ISignupView) {
 
-    val biz = SignupBiz()
-    var isLogin : Boolean by Preference(Constant.LOGIN, false)
-    var name : String by Preference(Constant.USERNAME, "")
-    var psw : String by Preference(Constant.PASSWORD, "")
+    private val biz = SignupBiz()
+    private var isLogin : Boolean by Preference(Constant.LOGIN, false)
+    private var name : String by Preference(Constant.USERNAME, "")
+    private var psw : String by Preference(Constant.PASSWORD, "")
+    private val signUpFailStr = "sign up fail"
+    private val length = signUpFailStr.length
 
-    fun register(username : String, password : String, repassword : String) {
-        biz.register(username, password, repassword).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).flatMap { t ->
+    fun register(username : String, password : String, repassword : String) = biz.register(username, password, repassword).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).flatMap { t ->
+        if (t.errorCode == 0) {
+            name = t.data.username
+            psw = t.data.password
+            biz.signIn(t.data.username, t.data.password).observeOn(Schedulers.io())
+        } else {
+            Observable.error(Throwable(signUpFailStr + t.errorMsg))
+        }
+    }.observeOn(AndroidSchedulers.mainThread()).subscribe(object : Observer<SignInBean> {
+
+        override fun onComplete() {
+        }
+
+        override fun onSubscribe(d : Disposable) {
+        }
+
+        override fun onNext(t : SignInBean) {
             if (t.errorCode == 0) {
+                isLogin = true
                 name = t.data.username
                 psw = t.data.password
-                biz.signIn(t.data.username, t.data.password)
+                iView.signInSuccess()
             } else {
-                Observable.error(Throwable("register fail"))
+                iView.signInFail()
             }
-        }.observeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : Observer<SignInBean> {
+        }
 
-            override fun onComplete() {
+        override fun onError(e : Throwable) {
+            if (e.message !!.contains(signUpFailStr)) {
+                //注册失败
+                val indexOf = e.message?.indexOf(signUpFailStr)
+                if (indexOf != - 1) iView.signUpFail(e.message !!.substring(indexOf !! + length)) else iView.signUpFail("注册失败")
+            } else {
+                //登陆失败
+                iView.signInFail()
             }
-
-            override fun onSubscribe(d : Disposable) {
-            }
-
-            override fun onNext(t : SignInBean) {
-                if (t.errorCode == 0) {
-                    isLogin = true
-                    name = t.data.username
-                    psw = t.data.password
-                    iView.signInSuccess()
-                } else {
-                    iView.signInFail()
-                }
-            }
-
-            override fun onError(e : Throwable) {
-                if (e.message.equals("register fail")) {
-                    //注册失败
-                    iView.signUpFail()
-                } else {
-                    //登陆失败
-                    iView.signInFail()
-                }
-            }
-        })
-    }
+        }
+    })
 }
