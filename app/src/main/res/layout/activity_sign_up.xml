@@ -103,7 +103,7 @@
         android:layout_marginTop="@dimen/dp_20"
         android:background="@drawable/selector_login"
         android:enabled="false"
-        android:text="@string/signin"
+        android:text="@string/signup"
         android:textAllCaps="false"
         android:textColor="@color/icons"
         android:textSize="@dimen/sp_14" />

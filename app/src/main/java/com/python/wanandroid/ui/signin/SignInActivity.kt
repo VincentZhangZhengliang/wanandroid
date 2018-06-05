@@ -7,20 +7,23 @@ import com.python.wanandroid.base.BaseActivity
 import com.python.wanandroid.ui.signin.presenter.SignInPresenter
 import com.python.wanandroid.ui.signin.view.ISignInView
 import com.python.wanandroid.ui.signup.SignUpActivity
+import com.python.wanandroid.ui.signup.event.RegisterEvent
 import kotlinx.android.synthetic.main.activity_sign_in.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 /**
  * 登录
  */
 class SignInActivity : BaseActivity(), ISignInView {
 
-    override fun toast(msg: String) {
+    override fun toast(msg : String) {
         Toast.makeText(this@SignInActivity, msg, Toast.LENGTH_SHORT).show()
     }
 
     val presenter = SignInPresenter(this)
 
-    override fun getLayoutId(): Int {
+    override fun getLayoutId() : Int {
         return R.layout.activity_sign_in
     }
 
@@ -31,11 +34,11 @@ class SignInActivity : BaseActivity(), ISignInView {
 
     override fun initData() {
         super.initData()
+        EventBus.getDefault().register(this@SignInActivity)
     }
 
     override fun initView() {
         super.initView()
-
     }
 
     override fun initListener() {
@@ -69,6 +72,17 @@ class SignInActivity : BaseActivity(), ISignInView {
             return
         }
         presenter.signIn(username, password)
+    }
+
+    @Subscribe
+    fun onRegisterEvent(registerEvent : RegisterEvent) {
+        val success = registerEvent.success
+        if (success) finish()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this@SignInActivity)
     }
 
 }

@@ -5,6 +5,7 @@ import com.python.wanandroid.ui.home.model.ArticleBean
 import com.python.wanandroid.ui.home.model.BannerBean
 import com.python.wanandroid.ui.home.model.CollectBean
 import com.python.wanandroid.ui.signin.model.SignInBean
+import com.python.wanandroid.ui.signup.model.SignUpBean
 import com.python.wanandroid.ui.system.model.TreeBean
 import io.reactivex.Observable
 
@@ -59,8 +60,8 @@ object Api {
         return RetrofitManager.getInstance().login(username, password)
     }
 
-    fun register(username: String, password: String): Observable<String> {
-        return RetrofitManager.getInstance().register(username, password, "")
+    fun register(username: String, password: String,repassword:String): Observable<SignUpBean> {
+        return RetrofitManager.getInstance().register(username, password, repassword)
     }
 
     fun collectList(p:Int,username: String, password: String): Observable<CollectionBean> {

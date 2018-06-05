@@ -5,6 +5,7 @@ import com.python.wanandroid.ui.home.model.ArticleBean
 import com.python.wanandroid.ui.home.model.BannerBean
 import com.python.wanandroid.ui.home.model.CollectBean
 import com.python.wanandroid.ui.signin.model.SignInBean
+import com.python.wanandroid.ui.signup.model.SignUpBean
 import com.python.wanandroid.ui.system.model.TreeBean
 import io.reactivex.Observable
 import retrofit2.http.*
@@ -84,7 +85,7 @@ interface RetrofitService {
      */
     @POST("user/register")
     @FormUrlEncoded
-    fun register(@Field("username") username: String, @Field("password") password: String, @Field("repassword") repassword: String): Observable<String>
+    fun register(@Field("username") username: String, @Field("password") password: String, @Field("repassword") repassword: String): Observable<SignUpBean>
 
     /**
      * 收藏文章列表
