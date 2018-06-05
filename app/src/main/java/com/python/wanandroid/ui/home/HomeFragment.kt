@@ -2,6 +2,8 @@ package com.python.wanandroid.ui.home
 
 
 import android.content.Intent
+import android.support.v4.widget.SwipeRefreshLayout
+import android.widget.AbsListView
 import android.widget.Toast
 import com.python.wanandroid.R
 import com.python.wanandroid.base.BaseApplication
@@ -18,15 +20,18 @@ import com.python.wanandroid.utils.Constant
 import com.python.wanandroid.utils.GlideImageLoader
 import com.python.wanandroid.utils.Preference
 import com.youth.banner.BannerConfig
+import kotlinx.android.synthetic.main.activity_my_collection.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.item_banner.*
 
-class HomeFragment : LazyLoadBaseFragment(), IHomeView {
+class HomeFragment : LazyLoadBaseFragment(), IHomeView, SwipeRefreshLayout.OnRefreshListener, AbsListView.OnScrollListener {
+
 
     private val presenter = HomePresenter(this)
     private var images = ArrayList<String>()    //banner图片链接集合
     private var titles = ArrayList<String>()    //banner标题集合
     private var curPage = 0                     //分页参数
+    private var pageCount: Int = 0
     private val articleList = ArrayList<ArticleDatasBean>()
     private var adapter: HomeLvAdapter = HomeLvAdapter(BaseApplication.instance(), articleList)
     var login: Boolean by Preference(Constant.LOGIN, false)
@@ -62,8 +67,8 @@ class HomeFragment : LazyLoadBaseFragment(), IHomeView {
     }
 
     override fun initListener() {
-
-
+        fragment_home_srl.setOnRefreshListener(this)
+        fragment_home_lv.setOnScrollListener(this)
     }
 
     override fun initData() {
@@ -76,7 +81,8 @@ class HomeFragment : LazyLoadBaseFragment(), IHomeView {
     }
 
     override fun refreshView(data: ArticleDataBean, type: RefreshType) {
-        curPage = data.curPage
+        this.curPage = data.curPage
+        this.pageCount = data.pageCount
         if (type != RefreshType.LOADMORE)
             articleList.clear()
         articleList.addAll(data.datas)
@@ -85,6 +91,31 @@ class HomeFragment : LazyLoadBaseFragment(), IHomeView {
 
     override fun toast(msg: String) {
         Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onRefresh() {
+        presenter.getBanner()
+        presenter.getArticleList(0, RefreshType.REFRESH)
+    }
+
+    override fun refreshFinish() {
+        fragment_home_srl.isRefreshing = false
+    }
+
+    override fun onScroll(view: AbsListView?, firstVisibleItem: Int, visibleItemCount: Int, totalItemCount: Int) {
+        if (firstVisibleItem + visibleItemCount == totalItemCount) {
+            val lastVisibleItemView = fragment_home_lv.getChildAt(totalItemCount - firstVisibleItem - 1)
+            if (lastVisibleItemView != null && lastVisibleItemView.bottom == view?.height) {
+                if (curPage < pageCount) {
+                    presenter.getArticleList(curPage, RefreshType.LOADMORE)
+                } else {
+                    toast("没有更多数据~")
+                }
+            }
+        }
+    }
+
+    override fun onScrollStateChanged(view: AbsListView?, scrollState: Int) {
     }
 
 }

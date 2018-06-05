@@ -16,7 +16,6 @@ import com.python.wanandroid.ui.signin.SignInActivity
 import com.python.wanandroid.ui.webview.WebviewActivity
 import com.python.wanandroid.utils.Constant
 import com.python.wanandroid.utils.Preference
-import com.zhy.autolayout.utils.AutoUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -36,7 +35,6 @@ class CollectionAdapter(var context: Context, var data: List<CollectionListBean>
             view = LayoutInflater.from(context).inflate(R.layout.item_home, parent, false)
             holder = ViewHolder(view)
             view.tag = holder
-            AutoUtils.autoSize(view)
         } else {
             view = convertView
             holder = view.tag as ViewHolder

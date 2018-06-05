@@ -17,7 +17,8 @@ class HomePresenter(var iView: IHomeView) {
     fun getArticleList(page: Int, type: RefreshType) {
         biz.getArticleList(page).observeOn(AndroidSchedulers.mainThread()).subscribe {
             if (it.errorCode == 0) {
-                iView.refreshView(it.data,type)
+                iView.refreshView(it.data, type)
+                iView.refreshFinish()
             } else {
                 iView.toast(it.errorMsg)
             }

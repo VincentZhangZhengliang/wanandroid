@@ -1,10 +1,11 @@
 package com.python.wanandroid.base
 
+import android.app.Activity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.gyf.barlibrary.ImmersionBar
-import com.zhy.autolayout.AutoLayoutActivity
 
-abstract class BaseActivity : AutoLayoutActivity() {
+abstract class BaseActivity : AppCompatActivity() {
 
     lateinit var mImmersionBar: ImmersionBar
 

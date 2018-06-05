@@ -11,6 +11,8 @@ interface ICollectionView {
 
     fun toast(msg: String)
 
-    fun setView(datas: List<CollectionListBean>)
+    fun setView(datas: List<CollectionListBean>, curPage: Int, pageCount: Int)
+
+    fun refreshFinish()
 
 }

@@ -31,4 +31,17 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
+
+    <!--<com.liaoinstan.springview.widget.SpringView-->
+        <!--android:id="@+id/activity_my_collection_sv"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<ListView-->
+            <!--android:id="@+id/activity_my_collection_lv"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent" />-->
+
+    <!--</com.liaoinstan.springview.widget.SpringView>-->
+
 </LinearLayout>

@@ -17,4 +17,6 @@ interface IHomeView {
 
     fun toast(msg: String)
 
+    fun refreshFinish()
+
 }

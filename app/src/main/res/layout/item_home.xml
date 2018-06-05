@@ -15,10 +15,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="16px"
-        android:paddingLeft="24px"
-        android:paddingRight="24px"
-        android:paddingTop="16px">
+        android:paddingBottom="@dimen/dp_8"
+        android:paddingLeft="@dimen/dp_12"
+        android:paddingRight="@dimen/dp_12"
+        android:paddingTop="@dimen/dp_8">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -26,8 +26,8 @@
 
             <ImageView
                 android:id="@+id/item_home_iv_pic"
-                android:layout_width="80px"
-                android:layout_height="80px"
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_30"
                 android:layout_centerVertical="true"
                 android:src="@drawable/ic_home_black_24dp" />
 
@@ -37,14 +37,14 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/item_home_iv_pic"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="20px"
-                android:layout_marginStart="20px"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginStart="@dimen/dp_10"
                 android:layout_toEndOf="@+id/item_home_iv_pic"
                 android:layout_toRightOf="@+id/item_home_iv_pic"
                 android:gravity="center"
                 android:text="鸿洋"
                 android:textColor="@color/primary_text"
-                android:textSize="40px" />
+                android:textSize="@dimen/sp_14" />
 
             <TextView
                 android:id="@+id/item_home_tv_niceDate"
@@ -55,7 +55,7 @@
                 android:layout_centerVertical="true"
                 android:text="10小时前"
                 android:textColor="@color/primary_text"
-                android:textSize="40px" />
+                android:textSize="@dimen/sp_14" />
 
         </RelativeLayout>
 
@@ -66,12 +66,12 @@
             android:layout_marginTop="10px"
             android:text="纵享丝滑滑动切换的周月日历，水滴效果，可高度定制，仿小米日历"
             android:textColor="@color/secondary_text"
-            android:textSize="40px" />
+            android:textSize="@dimen/sp_12" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20px">
+            android:layout_marginTop="@dimen/dp_10">
 
             <TextView
                 android:id="@+id/item_home_tv_category"
@@ -79,12 +79,12 @@
                 android:layout_height="wrap_content"
                 android:text="我的博客"
                 android:textColor="@color/primary"
-                android:textSize="30px" />
+                android:textSize="@dimen/sp_12" />
 
             <ImageView
                 android:id="@+id/item_home_cb_collect"
-                android:layout_width="60px"
-                android:layout_height="60px"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/selector_cb_collect"
                 android:button="@null" />

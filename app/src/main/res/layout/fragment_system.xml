@@ -22,8 +22,10 @@
         android:id="@+id/fragment_system_lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dp_5"
+        android:layout_marginTop="@dimen/dp_5"
         android:divider="@null"
-        android:dividerHeight="10px"
+        android:dividerHeight="@dimen/dp_5"
         android:scrollbars="none" />
 
 </LinearLayout>

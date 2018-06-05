@@ -73,7 +73,6 @@ class MainActivity : BaseActivity() {
             Toast.makeText(this, R.string.exit, Toast.LENGTH_SHORT).show()
             mExitTime = currentTime
         }
-
     }
 
 }

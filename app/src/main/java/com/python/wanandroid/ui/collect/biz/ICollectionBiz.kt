@@ -10,6 +10,7 @@ import io.reactivex.Observable
  */
 interface ICollectionBiz {
 
-    fun collectList(username: String, password: String): Observable<CollectionBean>
+    fun collectList(p:Int,username: String, password: String): Observable<CollectionBean>
+
 
 }

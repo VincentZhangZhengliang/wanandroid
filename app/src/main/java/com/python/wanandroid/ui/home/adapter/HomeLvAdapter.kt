@@ -16,7 +16,6 @@ import com.python.wanandroid.ui.signin.SignInActivity
 import com.python.wanandroid.ui.webview.WebviewActivity
 import com.python.wanandroid.utils.Constant
 import com.python.wanandroid.utils.Preference
-import com.zhy.autolayout.utils.AutoUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -41,7 +40,6 @@ class HomeLvAdapter(var context: Context, var data: List<ArticleDatasBean>) : Ba
             view = convertView
             holder = view.tag as ViewHolder
         }
-        AutoUtils.autoSize(view)
 //        Glide.with(context).load(data[position].envelopePic).into(holder.ivPic)
         holder.tvAuthor.text = data[position].author
         holder.tvNiceDate.text = data[position].niceDate

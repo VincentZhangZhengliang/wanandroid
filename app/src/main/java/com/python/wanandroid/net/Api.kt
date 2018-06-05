@@ -63,8 +63,8 @@ object Api {
         return RetrofitManager.getInstance().register(username, password, "")
     }
 
-    fun collectList(username: String, password: String): Observable<CollectionBean> {
-        return RetrofitManager.getInstance().collectList(0)
+    fun collectList(p:Int,username: String, password: String): Observable<CollectionBean> {
+        return RetrofitManager.getInstance().collectList(p)
     }
 
     fun collect(id: Long): Observable<CollectBean> {

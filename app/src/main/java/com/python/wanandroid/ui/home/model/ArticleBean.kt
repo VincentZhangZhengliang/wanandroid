@@ -9,7 +9,7 @@ package com.python.wanandroid.ui.home.model
 
 data class ArticleBean(var data: ArticleDataBean, var errorCode: Int, var errorMsg: String)
 
-data class ArticleDataBean(var curPage: Int, var datas: List<ArticleDatasBean>)
+data class ArticleDataBean(var curPage: Int, var datas: List<ArticleDatasBean>,var pageCount:Int,var total:Int)
 
 data class ArticleDatasBean(var apkLink: String,
                             var author: String,

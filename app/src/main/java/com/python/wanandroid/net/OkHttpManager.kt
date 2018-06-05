@@ -35,12 +35,11 @@ object OkHttpManager {
                     val requestUrl = request.url().toString()
                     val domain = request.url().host()
                     // set-cookie maybe has multi, login to save cookie
-                    val cookies = response.headers(SET_COOKIE_KEY)
-                    val cookie = encodeCookie(cookies)
-//                    val spDomain: String by Preference(domain, "")
 //                    login = cookie == spDomain
                     //登录或者注册成功后记录Cookies
                     if ((requestUrl.contains(SAVE_USER_LOGIN_KEY) || requestUrl.contains(SAVE_USER_REGISTER_KEY)) && !response.headers(SET_COOKIE_KEY).isEmpty()) {
+                        val cookies = response.headers(SET_COOKIE_KEY)
+                        val cookie = encodeCookie(cookies)
                         saveCookie(requestUrl, domain, cookie)
                     }
                     response
@@ -75,7 +74,6 @@ object OkHttpManager {
         domain ?: return
         var spDomain: String by Preference(domain, cookies)
         spDomain = cookies
-
     }
 
     private fun encodeCookie(cookies: MutableList<String>): String {

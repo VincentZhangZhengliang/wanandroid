@@ -11,8 +11,9 @@ import io.reactivex.Observable
  */
 class CollectionBiz : ICollectionBiz {
 
-    override fun collectList(username: String, password: String): Observable<CollectionBean> {
-        return Api.collectList(username, password)
+    override fun collectList(p: Int, username: String, password: String): Observable<CollectionBean> {
+        return Api.collectList(p, username, password)
     }
+
 
 }

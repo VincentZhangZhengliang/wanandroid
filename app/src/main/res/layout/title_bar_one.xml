@@ -17,17 +17,17 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="7dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="7dp"
+            android:layout_marginBottom="@dimen/dp_4"
+            android:layout_marginLeft="@dimen/dp_8"
+            android:layout_marginStart="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_4"
             android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_marginBottom="2dp"
+                android:layout_marginBottom="@dimen/dp_1"
                 android:layout_weight="1"
                 android:src="@mipmap/scan" />
 
@@ -36,42 +36,42 @@
                 android:layout_height="wrap_content"
                 android:text="扫一扫"
                 android:textColor="@color/colorBarText"
-                android:textSize="9sp" />
+                android:textSize="@dimen/sp_9" />
         </LinearLayout>
 
         <EditText
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:layout_marginLeft="@dimen/dp_8"
+            android:layout_marginRight="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_5"
             android:layout_weight="1"
             android:background="@drawable/shape_seek"
             android:cursorVisible="false"
             android:drawableLeft="@mipmap/seek"
-            android:drawablePadding="10dp"
+            android:drawablePadding="@dimen/dp_5"
             android:drawableStart="@mipmap/seek"
             android:hint="搜一搜"
             android:padding="10dp"
             android:textColor="@color/colorBarText"
             android:textColorHint="@color/colorBarText"
-            android:textSize="12sp" />
+            android:textSize="@dimen/sp_12" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="7dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="7dp"
+            android:layout_marginBottom="@dimen/dp_4"
+            android:layout_marginEnd="@dimen/dp_8"
+            android:layout_marginRight="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_4"
             android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_marginBottom="2dp"
+                android:layout_marginBottom="@dimen/dp_1"
                 android:layout_weight="1"
                 android:src="@mipmap/more" />
 
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:text="更多"
                 android:textColor="@color/colorBarText"
-                android:textSize="9sp" />
+                android:textSize="@dimen/sp_9" />
 
         </LinearLayout>
 
