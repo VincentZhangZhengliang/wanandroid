@@ -13,7 +13,15 @@
         <item name="android:textColorHint">@color/c000000</item>
         <item name="colorControlNormal">@color/c000000</item>
         <item name="colorControlActivated">@color/colorPrimaryDark</item>
-        <item name="colorControlHighlight">@color/colorPrimaryDark</item>
+        <item name="colorControlHighlight">@color/colorPrimaryDark</item>.
+
+
+    </style>
+
+    <!--设置toolbar标题主题-->
+    <style name="toolBar" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#ffffff</item>
     </style>
 
 </resources>

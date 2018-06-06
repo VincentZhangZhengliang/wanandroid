@@ -15,28 +15,31 @@ import com.python.wanandroid.ui.home.model.BannerListBean
 import com.python.wanandroid.ui.home.model.RefreshType
 import com.python.wanandroid.ui.home.presenter.HomePresenter
 import com.python.wanandroid.ui.home.view.IHomeView
+import com.python.wanandroid.ui.setting.event.SignOutEvent
+import com.python.wanandroid.ui.signin.event.SignInEvent
 import com.python.wanandroid.ui.webview.WebviewActivity
 import com.python.wanandroid.utils.Constant
 import com.python.wanandroid.utils.GlideImageLoader
 import com.python.wanandroid.utils.Preference
 import com.youth.banner.BannerConfig
-import kotlinx.android.synthetic.main.activity_my_collection.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_mine.*
 import kotlinx.android.synthetic.main.item_banner.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 class HomeFragment : LazyLoadBaseFragment(), IHomeView, SwipeRefreshLayout.OnRefreshListener, AbsListView.OnScrollListener {
-
 
     private val presenter = HomePresenter(this)
     private var images = ArrayList<String>()    //banner图片链接集合
     private var titles = ArrayList<String>()    //banner标题集合
     private var curPage = 0                     //分页参数
-    private var pageCount: Int = 0
+    private var pageCount : Int = 0
     private val articleList = ArrayList<ArticleDatasBean>()
-    private var adapter: HomeLvAdapter = HomeLvAdapter(BaseApplication.instance(), articleList)
-    var login: Boolean by Preference(Constant.LOGIN, false)
+    private var adapter : HomeLvAdapter = HomeLvAdapter(BaseApplication.instance(), articleList)
+    var login : Boolean by Preference(Constant.LOGIN, false)
 
-    override fun setBanner(data: List<BannerListBean>) {
+    override fun setBanner(data : List<BannerListBean>) {
         images.clear()
         titles.clear()
         data.forEach {
@@ -47,7 +50,7 @@ class HomeFragment : LazyLoadBaseFragment(), IHomeView, SwipeRefreshLayout.OnRef
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE)
         banner.setImages(images)
         banner.setBannerTitles(titles)
-        banner.setOnBannerListener { position: Int ->
+        banner.setOnBannerListener { position : Int ->
             val intent = Intent(activity, WebviewActivity::class.java)
             intent.putExtra("title", data[position].title)
             intent.putExtra("url", data[position].url)
@@ -56,7 +59,7 @@ class HomeFragment : LazyLoadBaseFragment(), IHomeView, SwipeRefreshLayout.OnRef
         banner.start()
     }
 
-    override fun getLayoutId(): Int {
+    override fun getLayoutId() : Int {
         return R.layout.fragment_home
     }
 
@@ -72,6 +75,7 @@ class HomeFragment : LazyLoadBaseFragment(), IHomeView, SwipeRefreshLayout.OnRef
     }
 
     override fun initData() {
+        EventBus.getDefault().register(this)
         presenter.getBanner()
         presenter.getArticleList(curPage, RefreshType.NONE)
     }
@@ -80,16 +84,15 @@ class HomeFragment : LazyLoadBaseFragment(), IHomeView, SwipeRefreshLayout.OnRef
         super.initImmersionBar()
     }
 
-    override fun refreshView(data: ArticleDataBean, type: RefreshType) {
+    override fun refreshView(data : ArticleDataBean, type : RefreshType) {
         this.curPage = data.curPage
         this.pageCount = data.pageCount
-        if (type != RefreshType.LOADMORE)
-            articleList.clear()
+        if (type != RefreshType.LOADMORE) articleList.clear()
         articleList.addAll(data.datas)
         adapter.notifyDataSetChanged()
     }
 
-    override fun toast(msg: String) {
+    override fun toast(msg : String) {
         Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
     }
 
@@ -102,7 +105,7 @@ class HomeFragment : LazyLoadBaseFragment(), IHomeView, SwipeRefreshLayout.OnRef
         fragment_home_srl.isRefreshing = false
     }
 
-    override fun onScroll(view: AbsListView?, firstVisibleItem: Int, visibleItemCount: Int, totalItemCount: Int) {
+    override fun onScroll(view : AbsListView?, firstVisibleItem : Int, visibleItemCount : Int, totalItemCount : Int) {
         if (firstVisibleItem + visibleItemCount == totalItemCount) {
             val lastVisibleItemView = fragment_home_lv.getChildAt(totalItemCount - firstVisibleItem - 1)
             if (lastVisibleItemView != null && lastVisibleItemView.bottom == view?.height) {
@@ -115,7 +118,22 @@ class HomeFragment : LazyLoadBaseFragment(), IHomeView, SwipeRefreshLayout.OnRef
         }
     }
 
-    override fun onScrollStateChanged(view: AbsListView?, scrollState: Int) {
+    override fun onScrollStateChanged(view : AbsListView?, scrollState : Int) {
+    }
+
+    @Subscribe
+    fun onSignOutEvent(signOutEvent : SignOutEvent) {
+        presenter.getArticleList(0, RefreshType.REFRESH)
+    }
+
+    @Subscribe
+    fun onSignInEvent(signInEvent : SignInEvent) {
+        presenter.getArticleList(0, RefreshType.REFRESH)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
     }
 
 }

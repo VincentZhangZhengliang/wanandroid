@@ -1,24 +1,27 @@
 package com.python.wanandroid.base
 
-import android.app.Activity
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import com.gyf.barlibrary.ImmersionBar
+import me.imid.swipebacklayout.lib.SwipeBackLayout
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : SwipeBackActivity() {
 
-    lateinit var mImmersionBar: ImmersionBar
+    lateinit var mImmersionBar : ImmersionBar
+    lateinit var mSwipeBackLayout : SwipeBackLayout
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
+        mSwipeBackLayout = swipeBackLayout
+        mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT)
         initData()
         initView()
         initImmersionBar()
         initListener()
     }
 
-    abstract fun getLayoutId(): Int
+    abstract fun getLayoutId() : Int
 
     protected open fun initView() {}
 

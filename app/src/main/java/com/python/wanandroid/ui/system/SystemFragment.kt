@@ -1,9 +1,12 @@
 package com.python.wanandroid.ui.system
 
 
+import android.content.Intent
 import android.graphics.Color
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.view.View
+import android.widget.AdapterView
 import android.widget.Toast
 import com.gyf.barlibrary.ImmersionBar
 import com.python.wanandroid.R
@@ -13,7 +16,9 @@ import com.python.wanandroid.ui.system.adapter.SystemAdapter
 import com.python.wanandroid.ui.system.model.TreeDataBean
 import com.python.wanandroid.ui.system.presenter.SystemPresenter
 import com.python.wanandroid.ui.system.view.ISystemView
+import com.python.wanandroid.ui.system_cate.SystemCateActivity
 import kotlinx.android.synthetic.main.fragment_system.*
+import java.io.Serializable
 
 
 /**
@@ -21,17 +26,20 @@ import kotlinx.android.synthetic.main.fragment_system.*
  */
 class SystemFragment : LazyLoadBaseFragment(), ISystemView {
 
-    override fun toast(msg: String) {
+    var mData = mutableListOf<TreeDataBean>()
+    override fun toast(msg : String) {
         Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
     }
 
-    override fun setView(data: List<TreeDataBean>) {
+    override fun setView(data : List<TreeDataBean>) {
         fragment_system_lv.adapter = SystemAdapter(BaseApplication.instance(), data)
+        mData.clear()
+        mData.addAll(data)
     }
 
     val presenter = SystemPresenter(this)
 
-    override fun getLayoutId(): Int {
+    override fun getLayoutId() : Int {
         return R.layout.fragment_system
     }
 
@@ -51,6 +59,10 @@ class SystemFragment : LazyLoadBaseFragment(), ISystemView {
     }
 
     override fun initListener() {
+        fragment_system_lv.setOnItemClickListener { _, _, position, _ ->
+            val name = mData[position].name
+            startActivity(Intent(activity, SystemCateActivity::class.java).putExtra("cate", name).putExtra("list", mData[position].children as Serializable))
+        }
     }
 
     override fun initData() {

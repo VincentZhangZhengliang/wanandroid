@@ -7,10 +7,11 @@ import android.widget.Toast
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.python.wanandroid.R
 import com.python.wanandroid.base.BaseActivity
+import com.python.wanandroid.ui.signin.event.SignInEvent
 import com.python.wanandroid.ui.signin.presenter.SignInPresenter
 import com.python.wanandroid.ui.signin.view.ISignInView
 import com.python.wanandroid.ui.signup.SignUpActivity
-import com.python.wanandroid.ui.signup.event.RegisterEvent
+import com.python.wanandroid.ui.signup.event.SignUpEvent
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
 import kotlinx.android.synthetic.main.activity_sign_in.*
@@ -25,19 +26,20 @@ class SignInActivity : BaseActivity(), ISignInView {
     override fun signInSuccess() {
         finish()
         setResult(Activity.RESULT_OK)
+        EventBus.getDefault().post(SignInEvent(true))
     }
 
-    override fun signInFail(msg: String) {
+    override fun signInFail(msg : String) {
         toast(msg)
     }
 
-    override fun toast(msg: String) {
+    override fun toast(msg : String) {
         Toast.makeText(this@SignInActivity, msg, Toast.LENGTH_SHORT).show()
     }
 
     val presenter = SignInPresenter(this)
 
-    override fun getLayoutId(): Int {
+    override fun getLayoutId() : Int {
         return R.layout.activity_sign_in
     }
 
@@ -64,7 +66,7 @@ class SignInActivity : BaseActivity(), ISignInView {
         Observable.combineLatest(nameObservable, pswObservable, BiFunction<CharSequence, CharSequence, Boolean> { t1, t2 ->
             val nameStr = activity_sign_in_tiet_name.text.toString()
             val pswStr = activity_sign_in_tiet_psw.text.toString()
-            !TextUtils.isEmpty(nameStr) && !TextUtils.isEmpty(pswStr)
+            ! TextUtils.isEmpty(nameStr) && ! TextUtils.isEmpty(pswStr)
         }).subscribe {
             activity_sign_in_btn_signin.isEnabled = it
         }
@@ -110,7 +112,7 @@ class SignInActivity : BaseActivity(), ISignInView {
      * 注册成功后发送的事件
      */
     @Subscribe
-    fun onRegisterEvent(registerEvent: RegisterEvent) {
+    fun onRegisterEvent(registerEvent : SignUpEvent) {
         val success = registerEvent.success
         if (success) finish()
     }

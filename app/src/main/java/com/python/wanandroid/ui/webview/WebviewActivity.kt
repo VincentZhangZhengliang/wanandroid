@@ -1,5 +1,6 @@
 package com.python.wanandroid.ui.webview
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.Bitmap
@@ -13,14 +14,15 @@ import kotlinx.android.synthetic.main.activity_webview.*
 
 class WebviewActivity : BaseActivity() {
 
-    lateinit var url: String
-    lateinit var title: String
+    lateinit var url : String
+    lateinit var title : String
 
 
-    override fun getLayoutId(): Int {
+    override fun getLayoutId() : Int {
         return R.layout.activity_webview
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun initView() {
         super.initView()
         val settings = activity_webview_wv.settings
@@ -37,7 +39,7 @@ class WebviewActivity : BaseActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
         }
-//        activity_webview_wv.addJavascriptInterface(JavaScriptInterface(), "topzrt")
+        //        activity_webview_wv.addJavascriptInterface(JavaScriptInterface(), "topzrt")
         activity_webview_wv.webViewClient = MyWebViewClient()
         activity_webview_wv.webChromeClient = MyWebChromeClient()
         activity_webview_wv.setDownloadListener(MyWebViewDownLoadListener())
@@ -77,17 +79,17 @@ class WebviewActivity : BaseActivity() {
 
     private inner class MyWebViewClient : WebViewClient() {
 
-        override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+        override fun shouldOverrideUrlLoading(view : WebView, url : String) : Boolean {
             view.loadUrl(url)
             return true
         }
 
-        override fun onPageFinished(view: WebView?, url: String?) {
+        override fun onPageFinished(view : WebView?, url : String?) {
             super.onPageFinished(view, url)
             //            loadingDialog.stopAnimator()
         }
 
-        override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+        override fun onPageStarted(view : WebView?, url : String?, favicon : Bitmap?) {
             super.onPageStarted(view, url, favicon)
         }
 
@@ -95,8 +97,7 @@ class WebviewActivity : BaseActivity() {
 
     private inner class MyWebViewDownLoadListener : DownloadListener {
 
-        override fun onDownloadStart(url: String, userAgent: String, contentDisposition: String,
-                                     mimetype: String, contentLength: Long) {
+        override fun onDownloadStart(url : String, userAgent : String, contentDisposition : String, mimetype : String, contentLength : Long) {
             val uri = Uri.parse(url)
             val intent = Intent(Intent.ACTION_VIEW, uri)
             startActivity(intent)
@@ -106,16 +107,16 @@ class WebviewActivity : BaseActivity() {
 
     private inner class MyWebChromeClient : WebChromeClient() {
 
-        private var mCustomView: View? = null
-        private var mCustomViewCallback: CustomViewCallback? = null
+        private var mCustomView : View? = null
+        private var mCustomViewCallback : CustomViewCallback? = null
 
-        override fun onProgressChanged(view: WebView, newProgress: Int) {
+        override fun onProgressChanged(view : WebView, newProgress : Int) {
             if (newProgress > 90) {
                 activity_webview_toolbar.title = title
             }
         }
 
-        override fun onShowCustomView(view: View, callback: CustomViewCallback) {
+        override fun onShowCustomView(view : View, callback : CustomViewCallback) {
             super.onShowCustomView(view, callback)
             if (mCustomView != null) {
                 callback.onCustomViewHidden()
@@ -134,9 +135,9 @@ class WebviewActivity : BaseActivity() {
             }
             requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
             activity_webview_wv.visibility = View.VISIBLE
-            mCustomView!!.visibility = View.GONE
+            mCustomView !!.visibility = View.GONE
             activity_webview_fl.removeView(mCustomView)
-            mCustomViewCallback!!.onCustomViewHidden()
+            mCustomViewCallback !!.onCustomViewHidden()
             mCustomView = null
             super.onHideCustomView()
         }

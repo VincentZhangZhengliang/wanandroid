@@ -33,7 +33,8 @@
         <activity android:name=".ui.signup.SignUpActivity" />
         <activity android:name=".ui.webview.WebviewActivity" />
         <activity android:name=".ui.setting.SettingActivity" />
-        <activity android:name=".ui.collect.MyCollectionActivity"></activity>
+        <activity android:name=".ui.collect.MyCollectionActivity" />
+        <activity android:name=".ui.system_cate.SystemCateActivity"></activity>
     </application>
 
 </manifest>
