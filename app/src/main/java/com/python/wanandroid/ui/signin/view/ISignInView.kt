@@ -9,5 +9,9 @@ interface ISignInView {
 
     fun toast(msg: String)
 
+    fun signInSuccess()
+
+    fun signInFail(msg:String)
+
 
 }

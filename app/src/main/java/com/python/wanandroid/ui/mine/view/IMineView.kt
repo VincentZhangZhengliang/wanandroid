@@ -7,4 +7,7 @@ package com.python.wanandroid.ui.mine.view
  */
 interface IMineView {
 
+    fun toast(msg:String)
+
+
 }

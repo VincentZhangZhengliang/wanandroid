@@ -32,6 +32,7 @@
             android:src="@mipmap/ic_launcher" />
 
         <TextView
+            android:id="@+id/fragment_mine_tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"

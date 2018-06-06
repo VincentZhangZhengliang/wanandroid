@@ -15,4 +15,6 @@ object Constant {
 
     const val DOMAIN = "wanandroid.com"
 
+    const val CODE_SIGN_IN = 100
+
 }
