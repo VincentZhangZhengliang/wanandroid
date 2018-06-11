@@ -17,12 +17,11 @@ class SettingPresenter(var iView : ISettingView) {
     var spDomain : String by Preference(Constant.DOMAIN, "")
 
     fun signOut() {
+        iView.signOutSuccess(name)
         isLogin = false
         name = ""
         psw = ""
         spDomain = ""
-        iView.signOutSuccess()
     }
-
 
 }

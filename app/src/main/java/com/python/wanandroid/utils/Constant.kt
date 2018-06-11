@@ -17,4 +17,10 @@ object Constant {
 
     const val CODE_SIGN_IN = 100
 
+    const val JPUSH_SEQUENCE = 1
+
+    const val CHANNEL_ID = "channel_id"
+
+    const val ACTION_SNOOZE = "com.python.wanandroid.receiver.NotificationReceiver.snooze"
+
 }

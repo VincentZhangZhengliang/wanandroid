@@ -30,7 +30,7 @@ class SignInPresenter(var iView : ISignInView) {
                 isLogin = true
                 name = it.data.username
                 psw = it.data.password
-                iView.signInSuccess()
+                iView.signInSuccess(username)
             } else {
                 iView.signInFail(it.errorMsg)
             }

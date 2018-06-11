@@ -28,5 +28,7 @@
     <string name="wifi">开启后WIFI自动下载更新应用</string>
     <string name="auto_update">自动更新</string>
     <string name="ssystem_setting">系统设置</string>
+    <string name="channel_name">joker</string>
+    <string name="channel_description">description</string>
 
 </resources>

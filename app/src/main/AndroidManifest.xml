@@ -46,6 +46,16 @@
 
         <activity android:name=".ui.system_cate.SystemCateActivity" />
 
+        <receiver android:name=".receiver.NotificationReceiver">
+
+            <intent-filter>
+
+                <action android:name="com.python.wanandroid.receiver.NotificationReceiver.snooze" />
+
+            </intent-filter>
+
+        </receiver>
+
     </application>
 
 </manifest>

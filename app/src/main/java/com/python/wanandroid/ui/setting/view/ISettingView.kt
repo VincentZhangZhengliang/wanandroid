@@ -7,7 +7,7 @@ package com.python.wanandroid.ui.setting.view
  */
 interface ISettingView {
 
-    fun signOutSuccess()
+    fun signOutSuccess(name: String)
 
 
 }

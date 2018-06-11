@@ -1,16 +1,18 @@
 package com.python.wanandroid
 
+import android.support.v4.app.NotificationCompat
 import android.support.v4.view.ViewPager
 import android.widget.Toast
 import com.python.wanandroid.adapter.MainViewPagerAdapter
 import com.python.wanandroid.base.BaseActivity
+import com.python.wanandroid.utils.Constant
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
 
-    var mExitTime : Long = 0
+    var mExitTime: Long = 0
 
-    override fun getLayoutId() : Int {
+    override fun getLayoutId(): Int {
         return R.layout.activity_main
     }
 
@@ -19,6 +21,9 @@ class MainActivity : BaseActivity() {
         activity_main_vp.adapter = MainViewPagerAdapter(supportFragmentManager)
         activity_main_vp.offscreenPageLimit = 2
         setSwipeBackEnable(false)
+
+
+
     }
 
     override fun initListener() {
@@ -26,13 +31,13 @@ class MainActivity : BaseActivity() {
 
         activity_main_vp.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
 
-            override fun onPageScrollStateChanged(state : Int) {
+            override fun onPageScrollStateChanged(state: Int) {
             }
 
-            override fun onPageScrolled(position : Int, positionOffset : Float, positionOffsetPixels : Int) {
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
             }
 
-            override fun onPageSelected(position : Int) {
+            override fun onPageSelected(position: Int) {
                 activity_main_bnv.menu.getItem(position).isChecked = true
                 when (position) {
                     0 -> mImmersionBar.statusBarDarkFont(true, 0.5f).navigationBarColor(R.color.colorPrimary).init()
@@ -43,7 +48,7 @@ class MainActivity : BaseActivity() {
         activity_main_bnv.setOnNavigationItemSelectedListener {
             var result = true
             when (it.itemId) {
-                R.id.id_menu_home   -> {
+                R.id.id_menu_home -> {
                     activity_main_vp.currentItem = 0
                     result = true
                 }
@@ -51,7 +56,7 @@ class MainActivity : BaseActivity() {
                     activity_main_vp.currentItem = 1
                     result = true
                 }
-                R.id.id_menu_mine   -> {
+                R.id.id_menu_mine -> {
                     activity_main_vp.currentItem = 2
                     result = true
                 }
