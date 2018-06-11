@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.python.wanandroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -33,7 +34,16 @@
         <activity android:name=".ui.signup.SignUpActivity" />
         <activity android:name=".ui.webview.WebviewActivity" />
         <activity android:name=".ui.setting.SettingActivity" />
-        <activity android:name=".ui.collect.MyCollectionActivity"></activity>
+        <activity android:name=".ui.collect.MyCollectionActivity" />
+
+        <!--极光推送-->
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:process=":multiprocess"
+            tools:node="replace">
+
+        </service>
+
     </application>
 
 </manifest>
