@@ -5,7 +5,7 @@ import android.widget.Toast
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.python.wanandroid.R
 import com.python.wanandroid.base.BaseActivity
-import com.python.wanandroid.ui.signup.event.RegisterEvent
+import com.python.wanandroid.ui.signup.event.SignUpEvent
 import com.python.wanandroid.ui.signup.presenter.SignupPresenter
 import com.python.wanandroid.ui.signup.view.ISignupView
 import io.reactivex.Observable
@@ -78,7 +78,7 @@ class SignUpActivity : BaseActivity(), ISignupView {
      */
     override fun signInSuccess() {
         //finish signup signin
-        EventBus.getDefault().post(RegisterEvent(true))
+        EventBus.getDefault().post(SignUpEvent(true))
         finish()
     }
 

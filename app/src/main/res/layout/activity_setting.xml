@@ -139,5 +139,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/activity_setting_btn_signout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dp_48"
+            android:layout_marginLeft="@dimen/dp_40"
+            android:layout_marginRight="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_20"
+            android:background="@drawable/selector_login"
+            android:enabled="false"
+            android:text="@string/signout"
+            android:textAllCaps="false"
+            android:textColor="@color/icons"
+            android:textSize="@dimen/sp_14" />
+
+    </RelativeLayout>
+
 
 </LinearLayout>

@@ -18,6 +18,7 @@
     <string name="confirm">confirm</string>
     <string name="signin">sign in</string>
     <string name="signup">sign up</string>
+    <string name="signout">sign out</string>
     <string name="forgetpsw">forget password?</string>
     <string name="toSignup">----- Don\'t have an account ? -----</string>
 

@@ -5,4 +5,4 @@ package com.python.wanandroid.ui.signup.event
  * @date 2018/6/5
  * @desc
  */
-data class RegisterEvent(var success : Boolean)
+data class SignUpEvent(var success : Boolean)

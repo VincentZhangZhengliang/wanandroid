@@ -44,6 +44,8 @@
 
         </service>
 
+        <activity android:name=".ui.system_cate.SystemCateActivity" />
+
     </application>
 
 </manifest>

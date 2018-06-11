@@ -13,30 +13,28 @@ import timber.log.Timber
  * Created on 2018/2/28;
  * DSC:
  */
-class SignInPresenter(var iView: ISignInView) {
+class SignInPresenter(var iView : ISignInView) {
 
 
-    var isLogin: Boolean by Preference(Constant.LOGIN, false)
-    var name: String by Preference(Constant.USERNAME, "")
-    var psw: String by Preference(Constant.PASSWORD, "")
-    var spDomain: String by Preference(Constant.DOMAIN, "")
+    var isLogin : Boolean by Preference(Constant.LOGIN, false)
+    var name : String by Preference(Constant.USERNAME, "")
+    var psw : String by Preference(Constant.PASSWORD, "")
+    var spDomain : String by Preference(Constant.DOMAIN, "")
 
     val biz = SignInBiz()
 
-    fun signIn(username: String, password: String) {
+    fun signIn(username : String, password : String) {
         Timber.e("username  = $username , password = $password")
-        biz.signIn(username, password).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    if (it.errorCode == 0) {
-                        iView.toast("登录成功")
-                        isLogin = true
-                        name = it.data.username
-                        psw = it.data.password
-                    } else {
-                        iView.toast(it.errorMsg)
-                    }
-                }
+        biz.signIn(username, password).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe {
+            if (it.errorCode == 0) {
+                isLogin = true
+                name = it.data.username
+                psw = it.data.password
+                iView.signInSuccess()
+            } else {
+                iView.signInFail(it.errorMsg)
+            }
+        }
     }
 
     fun signout() {
