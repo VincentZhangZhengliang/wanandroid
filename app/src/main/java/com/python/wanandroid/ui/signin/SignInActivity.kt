@@ -14,6 +14,7 @@ import com.python.wanandroid.ui.signin.view.ISignInView
 import com.python.wanandroid.ui.signup.SignUpActivity
 import com.python.wanandroid.ui.signup.event.SignUpEvent
 import com.python.wanandroid.utils.Constant
+import com.umeng.analytics.MobclickAgent
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
 import kotlinx.android.synthetic.main.activity_sign_in.*
@@ -119,6 +120,16 @@ class SignInActivity : BaseActivity(), ISignInView {
     fun onRegisterEvent(registerEvent: SignUpEvent) {
         val success = registerEvent.success
         if (success) finish()
+    }
+
+    override fun onResume() {
+        MobclickAgent.onPageStart("登陆") //手动统计页面("SplashScreen"为页面名称，可自定义)
+        super.onResume()
+    }
+
+    override fun onPause() {
+        MobclickAgent.onPageEnd("登陆")
+        super.onPause()
     }
 
     override fun onDestroy() {

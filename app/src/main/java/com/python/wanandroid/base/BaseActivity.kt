@@ -1,16 +1,19 @@
 package com.python.wanandroid.base
 
 import android.os.Bundle
+import anet.channel.util.Utils.context
 import com.gyf.barlibrary.ImmersionBar
+import com.umeng.analytics.MobclickAgent
+import com.umeng.message.PushAgent
 import me.imid.swipebacklayout.lib.SwipeBackLayout
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity
 
 abstract class BaseActivity : SwipeBackActivity() {
 
-    lateinit var mImmersionBar : ImmersionBar
-    lateinit var mSwipeBackLayout : SwipeBackLayout
+    lateinit var mImmersionBar: ImmersionBar
+    lateinit var mSwipeBackLayout: SwipeBackLayout
 
-    override fun onCreate(savedInstanceState : Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
         mSwipeBackLayout = swipeBackLayout
@@ -21,7 +24,7 @@ abstract class BaseActivity : SwipeBackActivity() {
         initListener()
     }
 
-    abstract fun getLayoutId() : Int
+    abstract fun getLayoutId(): Int
 
     protected open fun initView() {}
 
@@ -32,19 +35,24 @@ abstract class BaseActivity : SwipeBackActivity() {
 
     protected open fun initListener() {}
 
-    protected open fun initData() {}
+    protected open fun initData() {
+        PushAgent.getInstance(this).onAppStart();
+    }
 
     override fun onDestroy() {
         super.onDestroy()
         mImmersionBar.destroy()
     }
 
-    override fun onPause() {
-        super.onPause()
-    }
 
     override fun onResume() {
         super.onResume()
+        MobclickAgent.onResume(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        MobclickAgent.onPause(this)
     }
 
     override fun onStop() {

@@ -14,6 +14,12 @@ import timber.log.Timber
 import com.python.wanandroid.MainActivity
 import cn.jpush.android.api.CustomPushNotificationBuilder
 import com.python.wanandroid.utils.Constant
+import com.python.wanandroid.utils.LogUtil
+import com.umeng.analytics.MobclickAgent
+import com.umeng.commonsdk.UMConfigure
+import com.umeng.message.IUmengRegisterCallback
+import com.umeng.message.PushAgent
+import com.umeng.message.UmengAdHandler
 
 
 /**
@@ -35,11 +41,35 @@ class BaseApplication : Application() {
         instance = this
         Preference.setContext(applicationContext)
         Timber.plant(Timber.DebugTree())
-        JPushInterface.setDebugMode(true)
-        JPushInterface.init(this)
         createNotificationChannel()
+        initJPush()
+        initUmeng()
     }
 
+    private fun initJPush() {
+        JPushInterface.setDebugMode(true)
+        JPushInterface.init(this)
+    }
+
+    /**
+     * 初始化Umeng
+     */
+    private fun initUmeng() {
+        UMConfigure.init(this, "5b4c47938f4a9d2b950000cb", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "7201a724795f8897a004b22f7dfe1f91")
+        UMConfigure.setLogEnabled(true)
+        MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL)
+        MobclickAgent.openActivityDurationTrack(false)
+        PushAgent.getInstance(this).register(object : IUmengRegisterCallback {
+            override fun onSuccess(deviceToken: String?) {
+                LogUtil.e("deviceToken = $deviceToken")
+            }
+
+            override fun onFailure(p0: String?, p1: String?) {
+
+            }
+        })
+
+    }
 
     private fun createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because

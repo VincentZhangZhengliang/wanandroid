@@ -56,7 +56,7 @@ object OkHttpManager {
             }
             it.proceed(builder.build())
         }.addInterceptor(HttpLoggingInterceptor(HttpLoggingInterceptor.Logger {
-            Timber.e(it)
+//            Timber.e(it)
         }).apply {
             level = HttpLoggingInterceptor.Level.BODY
         }).build()

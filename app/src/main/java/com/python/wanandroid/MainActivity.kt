@@ -19,11 +19,8 @@ class MainActivity : BaseActivity() {
     override fun initView() {
         super.initView()
         activity_main_vp.adapter = MainViewPagerAdapter(supportFragmentManager)
-        activity_main_vp.offscreenPageLimit = 2
+        activity_main_vp.offscreenPageLimit = 1
         setSwipeBackEnable(false)
-
-
-
     }
 
     override fun initListener() {

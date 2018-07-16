@@ -24,6 +24,7 @@ import android.graphics.BitmapFactory
 import android.support.v4.app.NotificationManagerCompat
 import com.python.wanandroid.MainActivity
 import com.python.wanandroid.receiver.NotificationReceiver
+import com.umeng.analytics.MobclickAgent
 
 
 class SettingActivity : BaseActivity(), ISettingView {
@@ -100,6 +101,16 @@ class SettingActivity : BaseActivity(), ISettingView {
         EventBus.getDefault().post(SignOutEvent(true))
         finish()
         JPushInterface.deleteAlias(this, Constant.JPUSH_SEQUENCE)
+    }
+
+    override fun onResume() {
+        MobclickAgent.onPageStart("设置") //手动统计页面("SplashScreen"为页面名称，可自定义)
+        super.onResume()
+    }
+
+    override fun onPause() {
+        MobclickAgent.onPageEnd("设置")
+        super.onPause()
     }
 
 

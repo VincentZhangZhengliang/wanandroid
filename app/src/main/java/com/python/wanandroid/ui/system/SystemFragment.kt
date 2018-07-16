@@ -17,6 +17,8 @@ import com.python.wanandroid.ui.system.model.TreeDataBean
 import com.python.wanandroid.ui.system.presenter.SystemPresenter
 import com.python.wanandroid.ui.system.view.ISystemView
 import com.python.wanandroid.ui.system_cate.SystemCateActivity
+import com.python.wanandroid.utils.LogUtil
+import com.umeng.analytics.MobclickAgent
 import kotlinx.android.synthetic.main.fragment_system.*
 import java.io.Serializable
 
@@ -27,11 +29,11 @@ import java.io.Serializable
 class SystemFragment : LazyLoadBaseFragment(), ISystemView {
 
     var mData = mutableListOf<TreeDataBean>()
-    override fun toast(msg : String) {
+    override fun toast(msg: String) {
         Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
     }
 
-    override fun setView(data : List<TreeDataBean>) {
+    override fun setView(data: List<TreeDataBean>) {
         fragment_system_lv.adapter = SystemAdapter(BaseApplication.instance(), data)
         mData.clear()
         mData.addAll(data)
@@ -39,7 +41,7 @@ class SystemFragment : LazyLoadBaseFragment(), ISystemView {
 
     val presenter = SystemPresenter(this)
 
-    override fun getLayoutId() : Int {
+    override fun getLayoutId(): Int {
         return R.layout.fragment_system
     }
 

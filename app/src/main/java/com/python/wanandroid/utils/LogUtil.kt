@@ -26,25 +26,25 @@ class LogUtil {
 
         fun d(msg: String, tag: String = TAG) {
             if (LOGD) {
-                log(Level.V, tag, msg)
+                log(Level.D, tag, msg)
             }
         }
 
         fun i(msg: String, tag: String = TAG) {
             if (LOGI) {
-                log(Level.V, tag, msg)
+                log(Level.I, tag, msg)
             }
         }
 
         fun w(msg: String, tag: String = TAG) {
             if (LOGW) {
-                log(Level.V, tag, msg)
+                log(Level.W, tag, msg)
             }
         }
 
         fun e(msg: String, tag: String = TAG) {
             if (LOGE) {
-                log(Level.V, tag, msg)
+                log(Level.E, tag, msg)
             }
         }
 
@@ -62,10 +62,10 @@ class LogUtil {
                 index += maxLength
                 when (level) {
                     Level.V -> Log.v(tag, sub.trim())
-                    Level.D -> Log.v(tag, sub.trim())
-                    Level.I -> Log.v(tag, sub.trim())
-                    Level.W -> Log.v(tag, sub.trim())
-                    Level.E -> Log.v(tag, sub.trim())
+                    Level.D -> Log.d(tag, sub.trim())
+                    Level.I -> Log.i(tag, sub.trim())
+                    Level.W -> Log.w(tag, sub.trim())
+                    Level.E -> Log.e(tag, sub.trim())
                 }
             }
         }

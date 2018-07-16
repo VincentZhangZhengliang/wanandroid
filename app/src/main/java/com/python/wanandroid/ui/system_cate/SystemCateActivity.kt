@@ -3,6 +3,7 @@ package com.python.wanandroid.ui.system_cate
 import com.python.wanandroid.R
 import com.python.wanandroid.base.BaseActivity
 import com.python.wanandroid.ui.system.model.TreeChildrenBean
+import com.umeng.analytics.MobclickAgent
 import kotlinx.android.synthetic.main.activity_system_detail.*
 
 class SystemCateActivity : BaseActivity() {
@@ -41,6 +42,16 @@ class SystemCateActivity : BaseActivity() {
         val tabList = intent.getSerializableExtra("list") as MutableList<TreeChildrenBean>
         mTabList.clear()
         mTabList.addAll(tabList)
+    }
+
+    override fun onResume() {
+        MobclickAgent.onPageStart("系统分类")
+        super.onResume()
+    }
+
+    override fun onPause() {
+        MobclickAgent.onPageEnd("系统分类")
+        super.onPause()
     }
 
 

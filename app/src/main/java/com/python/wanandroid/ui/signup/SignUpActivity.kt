@@ -8,6 +8,7 @@ import com.python.wanandroid.base.BaseActivity
 import com.python.wanandroid.ui.signup.event.SignUpEvent
 import com.python.wanandroid.ui.signup.presenter.SignupPresenter
 import com.python.wanandroid.ui.signup.view.ISignupView
+import com.umeng.analytics.MobclickAgent
 import io.reactivex.Observable
 import io.reactivex.functions.Function3
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -92,6 +93,16 @@ class SignUpActivity : BaseActivity(), ISignupView {
 
     override fun hideLoading() {
 
+    }
+
+    override fun onResume() {
+        MobclickAgent.onPageStart("注册") //手动统计页面("SplashScreen"为页面名称，可自定义)
+        super.onResume()
+    }
+
+    override fun onPause() {
+        MobclickAgent.onPageEnd("注册")
+        super.onPause()
     }
 
 }

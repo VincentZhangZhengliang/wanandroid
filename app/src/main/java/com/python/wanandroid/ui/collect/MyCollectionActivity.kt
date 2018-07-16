@@ -11,6 +11,7 @@ import com.python.wanandroid.ui.collect.presenter.CollectionPresenter
 import com.python.wanandroid.ui.collect.view.ICollectionView
 import com.python.wanandroid.utils.Constant
 import com.python.wanandroid.utils.Preference
+import com.umeng.analytics.MobclickAgent
 import kotlinx.android.synthetic.main.activity_my_collection.*
 
 class MyCollectionActivity : BaseActivity(), ICollectionView, SwipeRefreshLayout.OnRefreshListener, AbsListView.OnScrollListener {
@@ -87,6 +88,16 @@ class MyCollectionActivity : BaseActivity(), ICollectionView, SwipeRefreshLayout
     }
 
     override fun onScrollStateChanged(view: AbsListView?, scrollState: Int) {
+    }
+
+    override fun onResume() {
+        MobclickAgent.onPageStart("我的收藏")
+        super.onResume()
+    }
+
+    override fun onPause() {
+        MobclickAgent.onPageEnd("我的收藏")
+        super.onPause()
     }
 
 }

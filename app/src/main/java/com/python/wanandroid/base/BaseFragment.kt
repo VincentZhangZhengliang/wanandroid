@@ -2,9 +2,11 @@ package com.python.wanandroid.base
 
 
 import android.os.Bundle
+import android.os.SystemClock
 import android.support.v4.app.Fragment
 import android.view.*
 import com.python.wanandroid.R
+import com.python.wanandroid.utils.LogUtil
 
 
 /**
@@ -65,6 +67,7 @@ abstract class LazyLoadBaseFragment : Fragment() {
             isViewCreated = false
             isUIVisible = false
         }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -72,5 +75,6 @@ abstract class LazyLoadBaseFragment : Fragment() {
         menu?.clear()
         inflater?.inflate(R.menu.menu, menu)
     }
+
 
 }
