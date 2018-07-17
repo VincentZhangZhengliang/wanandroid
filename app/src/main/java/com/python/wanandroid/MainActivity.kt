@@ -1,12 +1,17 @@
 package com.python.wanandroid
 
+import android.app.Activity
+import android.content.Context
 import android.support.v4.app.NotificationCompat
 import android.support.v4.view.ViewPager
 import android.widget.Toast
 import com.python.wanandroid.adapter.MainViewPagerAdapter
 import com.python.wanandroid.base.BaseActivity
 import com.python.wanandroid.utils.Constant
+import com.umeng.message.inapp.IUmengInAppMsgCloseCallback
+import com.umeng.message.inapp.InAppMessageManager
 import kotlinx.android.synthetic.main.activity_main.*
+import timber.log.Timber
 
 class MainActivity : BaseActivity() {
 
@@ -19,8 +24,10 @@ class MainActivity : BaseActivity() {
     override fun initView() {
         super.initView()
         activity_main_vp.adapter = MainViewPagerAdapter(supportFragmentManager)
-        activity_main_vp.offscreenPageLimit = 1
+        activity_main_vp.offscreenPageLimit = 2
         setSwipeBackEnable(false)
+        InAppMessageManager.getInstance(this).showCardMessage(this,"main") {
+        }
     }
 
     override fun initListener() {

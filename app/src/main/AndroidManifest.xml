@@ -18,13 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".MainActivity" />
 
         <!-- 屏幕适配 -->
         <meta-data
@@ -41,26 +35,32 @@
         <activity android:name=".ui.setting.SettingActivity" />
         <activity android:name=".ui.collect.MyCollectionActivity" />
 
-        <!--极光推送-->
+        <!-- 极光推送 -->
         <service
             android:name="cn.jpush.android.service.PushService"
             android:process=":multiprocess"
-            tools:node="replace">
-
-        </service>
+            tools:node="replace" />
+        <!-- Umeng push -->
+        <service android:name=".receiver.MyUmengMessageService" />
 
         <activity android:name=".ui.system_cate.SystemCateActivity" />
 
         <receiver android:name=".receiver.NotificationReceiver">
-
             <intent-filter>
-
                 <action android:name="com.python.wanandroid.receiver.NotificationReceiver.snooze" />
-
             </intent-filter>
-
         </receiver>
 
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme_Umeng_Push_Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

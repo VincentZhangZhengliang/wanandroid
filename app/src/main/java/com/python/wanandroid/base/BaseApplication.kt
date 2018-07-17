@@ -2,24 +2,26 @@ package com.python.wanandroid.base
 
 import android.annotation.SuppressLint
 import android.app.Application
-import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.Context
 import android.os.Build
-import cn.jpush.android.api.BasicPushNotificationBuilder
+import android.widget.Toast
+import anet.channel.util.Utils.context
 import cn.jpush.android.api.JPushInterface
 import com.python.wanandroid.R
-import com.python.wanandroid.utils.Preference
-import timber.log.Timber
-import com.python.wanandroid.MainActivity
-import cn.jpush.android.api.CustomPushNotificationBuilder
+import com.python.wanandroid.receiver.MyUmengMessageService
 import com.python.wanandroid.utils.Constant
 import com.python.wanandroid.utils.LogUtil
+import com.python.wanandroid.utils.Preference
 import com.umeng.analytics.MobclickAgent
 import com.umeng.commonsdk.UMConfigure
 import com.umeng.message.IUmengRegisterCallback
 import com.umeng.message.PushAgent
-import com.umeng.message.UmengAdHandler
+import com.umeng.message.UmengNotificationClickHandler
+import com.umeng.message.entity.UMessage
+import com.umeng.message.inapp.InAppMessageManager
+import timber.log.Timber
 
 
 /**
@@ -56,7 +58,7 @@ class BaseApplication : Application() {
      */
     private fun initUmeng() {
         UMConfigure.init(this, "5b4c47938f4a9d2b950000cb", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "7201a724795f8897a004b22f7dfe1f91")
-        UMConfigure.setLogEnabled(true)
+        UMConfigure.setLogEnabled(false)
         MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL)
         MobclickAgent.openActivityDurationTrack(false)
         PushAgent.getInstance(this).register(object : IUmengRegisterCallback {
@@ -69,6 +71,15 @@ class BaseApplication : Application() {
             }
         })
 
+        PushAgent.getInstance(this).notificationClickHandler = object : UmengNotificationClickHandler() {
+            override fun dealWithCustomAction(p0: Context?, p1: UMessage?) {
+                Toast.makeText(context, p1?.custom, Toast.LENGTH_LONG).show()
+            }
+        }
+
+//        PushAgent.getInstance(this).setPushIntentServiceClass(null)
+
+        InAppMessageManager.getInstance(this).setInAppMsgDebugMode(true)
     }
 
     private fun createNotificationChannel() {

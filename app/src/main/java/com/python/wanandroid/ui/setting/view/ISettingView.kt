@@ -9,5 +9,6 @@ interface ISettingView {
 
     fun signOutSuccess(name: String)
 
+    fun toast(msg: String)
 
 }

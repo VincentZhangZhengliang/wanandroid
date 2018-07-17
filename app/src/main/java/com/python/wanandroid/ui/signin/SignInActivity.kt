@@ -15,6 +15,8 @@ import com.python.wanandroid.ui.signup.SignUpActivity
 import com.python.wanandroid.ui.signup.event.SignUpEvent
 import com.python.wanandroid.utils.Constant
 import com.umeng.analytics.MobclickAgent
+import com.umeng.message.PushAgent
+import com.umeng.message.entity.Alias
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
 import kotlinx.android.synthetic.main.activity_sign_in.*
@@ -30,7 +32,6 @@ class SignInActivity : BaseActivity(), ISignInView {
         finish()
         setResult(Activity.RESULT_OK)
         EventBus.getDefault().post(SignInEvent(true))
-        //TODO:注册极光
         JPushInterface.setAlias(this, Constant.JPUSH_SEQUENCE, username)
     }
 

@@ -29,6 +29,7 @@
     <color name="cdddddd">#dddddd</color>
     <color name="ceeeeee">#eeeeee</color>
     <color name="cffffff">#ffffff</color>
+    <color name="transparent">#00000000</color>
 
 
 </resources>

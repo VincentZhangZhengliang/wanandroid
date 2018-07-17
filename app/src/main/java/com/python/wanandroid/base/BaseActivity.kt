@@ -36,7 +36,7 @@ abstract class BaseActivity : SwipeBackActivity() {
     protected open fun initListener() {}
 
     protected open fun initData() {
-        PushAgent.getInstance(this).onAppStart();
+        PushAgent.getInstance(this).onAppStart()
     }
 
     override fun onDestroy() {

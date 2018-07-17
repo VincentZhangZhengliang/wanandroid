@@ -87,5 +87,7 @@ dependencies {
     implementation 'com.umeng.sdk:analytics:7.5.3'
     implementation 'com.umeng.sdk:push:4.2.0'
 
+    //bugly
+
 
 }

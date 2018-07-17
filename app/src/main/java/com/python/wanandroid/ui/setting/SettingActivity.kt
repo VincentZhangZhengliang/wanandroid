@@ -22,12 +22,15 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.support.v4.app.NotificationManagerCompat
+import android.widget.Toast
 import com.python.wanandroid.MainActivity
 import com.python.wanandroid.receiver.NotificationReceiver
+import com.python.wanandroid.view.dialog.TimePickerDialog
 import com.umeng.analytics.MobclickAgent
 
 
-class SettingActivity : BaseActivity(), ISettingView {
+class SettingActivity : BaseActivity(), ISettingView, TimePickerDialog.OnConfirmListener {
+
 
     val presenter = SettingPresenter(this@SettingActivity)
     var isLogin: Boolean by Preference(Constant.LOGIN, false)
@@ -61,7 +64,6 @@ class SettingActivity : BaseActivity(), ISettingView {
         activity_setting_btn_signout.setOnClickListener {
             presenter.signOut()
         }
-
         textView4.setOnClickListener {
             var num = 0
             val intent = Intent(this, MainActivity::class.java)
@@ -94,7 +96,26 @@ class SettingActivity : BaseActivity(), ISettingView {
 
 
         }
+        sw_push_message.setOnCheckedChangeListener { _, isChecked ->
+            presenter.openMessagePush(this, isChecked)
+        }
+        sw_message_no_disturb.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                val dialog = TimePickerDialog.getInstance()
+                dialog.show(supportFragmentManager, "TimePickerDialog")
+            } else {
+                presenter.messageNoDisturb(this)
+            }
 
+        }
+    }
+
+    override fun onConfirm(startHour: Int, startMinute: Int, endHour: Int, endMinute: Int) {
+        presenter.messageNoDisturb(this, startHour, startMinute, endHour, endMinute)
+    }
+
+    override fun toast(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
     override fun signOutSuccess(name: String) {
